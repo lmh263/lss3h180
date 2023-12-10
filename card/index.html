@@ -1,0 +1,213 @@
+<html ng-app="app">
+<head>
+<meta charset="utf-8" >
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<title>房卡包</title>
+
+<script type="text/javascript" src="/js/config.js"> </script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/load.js"> </script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/other.js"> </script>
+    
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/angular.min.js"></script>
+<script src="http://180.188.22.245:10001/ttshenshou/files/js/jweixin-1.0.0.js" ></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/fastclick.js"></script>
+
+<script type="text/javascript">
+
+$(function () {
+    wx.config({    
+            debug: false,    
+            appId: "wx5455f9cac4940dfd",    
+            timestamp: "1590524740",    
+            nonceStr:"7afc6f781b8d10af867f2167cd77301c",    
+            signature: "7fdfa82e2bea19ef17ed289f160b3a353833bb6e",    
+            jsApiList: [     
+                'onMenuShareTimeline',    
+                'onMenuShareAppMessage',
+                'hideMenuItems',
+         ]    
+    });
+ 
+
+    wx.ready(function () {
+    	wx.hideOptionMenu();
+    });
+     
+});
+
+var app = angular.module('app',[])
+
+app.controller("myCtrl", function($scope,$http) {	
+	$scope.width = window.innerWidth;
+	$scope.height = window.innerHeight;
+
+	$scope.userInfo = {
+		"id":"1581095",
+		"name":"FatBoy-11806",
+		"avatar":"http://thirdwx.qlogo.cn/mmopen/vi_32/XErROVgjgeJOJ8YibbBAJE9R6gMBCn6tvQx3zibLVibx8HbTrgib3bzGwiaUpwLj8GrGEMrxw2K5hkAq8TAQ0P9L2nA/132",
+		"card":0,
+	}	
+    
+    $scope.dealerNum = localStorage.getItem('dealer_ss');
+	$scope.userInfo.card = xobj.user.diamond;
+    $scope.jumpUrl = "http://shl.hbgerui168.com/a615f8?url=http://dm7.w1e5rp.com?from=";
+    $scope.jump_urlv2 = "http://shl.hbgerui168.com/0auv6e?url=http://shl.hbgerui168.com/w/pecuniary/2020-05-27/[code].85039285494276289147232602261359.html";
+	
+	var socketStatus = 0;
+	$(".main").show();			
+	$("#loading").hide();
+	
+	$scope.activity = new Array();	
+	$scope.isShowAlert = false;
+	$scope.alertType = 0;
+	$scope.alertText = "";
+	$scope.cardNum = Number($scope.userInfo.card);
+	$scope.number = 0; //输入数量
+	$scope.inputNumber = null;  //输入框数字
+
+	if ($scope.cardNum === null 
+		|| $scope.cardNum === undefined
+		|| isNaN($scope.cardNum)) {
+		$scope.cardNum = 0;
+	}
+
+    //向服务器请求房卡数量
+	$scope.getRoomTicket = function() {
+		$http({
+    		url:'http://shl.hbgerui168.com/game/getRoomTicket', 
+    		method:'POST',
+    		header:{'Content-Type':'application/x-www-form-urlencoded'},
+    		data:{'account_id':"1581095","dealer_num":$scope.dealerNum}})
+    	.success(function(data, header, config, status) {
+    		if (data.data.ticket_count === null ||
+    			data.data.ticket_count === undefined) {
+    			alert(data.data.ticket_count);
+    	    } else {
+    	    	$scope.cardNum = Number(data.data.ticket_count);
+    	    }
+    		
+    	})
+    	.error(function(data, header, config, status) {
+    		alert(data.result_message);
+    	});
+	}
+
+	//输入框数字改变
+	$scope.changeNumber = function() {
+		if ($scope.inputNumber > $scope.cardNum) {
+			$scope.inputNumber = $scope.cardNum;
+		}
+
+		$scope.number = $scope.inputNumber;
+
+        console.log($scope.inputNumber);
+
+		if ($scope.number === undefined || $scope.number === null) {
+			$scope.number = 0;
+		} else {
+			//$scope.inputNumber = $scope.number;
+		}
+	}
+
+    $scope.createRedPackage = function() {
+
+    	if ($scope.number === undefined 
+    		|| $scope.number === null 
+    		|| isNaN($scope.number) 
+    		|| $scope.number <= 0) {
+    		alert('请输入正确的房卡数');
+    	} else {
+    		$http({
+    			url:BaseUrl+'/activity/createRedPackage',
+    			method:'POST',
+				headers: {
+					"Authorization": 'Bearer '+DynLoading.getWwid()
+				},
+    			data:{
+    				'account_id':$scope.userInfo.id,
+    				'ticket_count':$scope.number,
+    				'content':'恭喜发财',
+                    "dealer_num":$scope.dealerNum,
+    			}
+    		}).success(function(data, header, config, status) {
+    			if (data.result == 0 ) {
+    				$scope.cardNum = $scope.cardNum - $scope.inputNumber;
+    				//window.location.href = "http://shl.hbgerui168.com/activity/redpackageDetail?red_code=" + data.data.code + '&dealer_num=' + $scope.dealerNum;
+                    //window.location.href = $scope.jumpUrl + data.data.code;
+
+                    window.location.href=data.url;
+    			} else {
+    				alert(data.result_message);
+    			}
+    			
+    		}).error(function(data, header, config, status) {
+    			alert(data.result_message);
+    		});
+    	}
+    	
+    }
+
+
+    function randomString(len) {
+        　　len = len || 32;
+        　　var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+        　　var maxPos = $chars.length;
+        　　var pwd = '';
+        　　for (i = 0; i < len; i++) {
+            　　　　pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+        　　}
+        　　return pwd;
+    }
+
+
+    $scope.gotoMyRedPackage = function() {
+    	//window.location.href = "http://shl.hbgerui168.com/activity/myRedPackage?dealer_num=" + $scope.dealerNum;
+        //window.location.href = $scope.jumpUrl + randomString(10);
+        window.location.href='/card/log';
+    }
+
+})
+
+</script>
+</head>
+<link rel="stylesheet" type="text/css" href="http://180.188.22.245:10001/ttshenshou/files/css/activity.css">
+<img src="" style="display: none;">
+<body ng-controller="myCtrl" style="background: #000;" >
+<div style="position: fixed;width:100%;height:100%;top:0;left:0;background: #000" id="loading">
+	<img src="http://180.188.22.245:10001/ttshenshou/files/images/loading.gif" style="top: 40%;position: absolute;left: 50%;margin-left: -45px;margin-top: -45px;" />
+</div>
+<div class="main" style="display: none;">
+	
+	<img src="http://180.188.22.245:10001/ttshenshou/files/images/redpackage/redpackage_bg.jpg" style="width: 100%;position: relative;height:100%" usemap="#planetmap" /> 
+	
+	<div style="height: 44px; position: fixed; top: 22px; left: 22px; right: 22px;">
+		<p style="font-size: 14pt; color: orange">你的房卡：{{cardNum}} 张</p>
+	</div>
+	<div style="height: 44px; position: fixed; top: 60px; left: 22px; right: 22px; background-color: #fff; border-radius: 4px; overflow: hidden; ">
+		<form style="">
+		    <label style="top: 10px; left: 10px; width: 80px;height: 100%; font-size: 13pt; text-align: left; position: absolute;">放入房卡</label>
+			<input id="pnumber" type="number" ng-maxlength=9 name="packagenumber" placeholder=0
+			ng-model="inputNumber" ng-change="changeNumber()" style="left: 90px; width: {{width - 170}}px; height: 100%; position: absolute; font-size: 13pt; color: gray; text-align: right;"></input>
+			<label style="position: absolute; top: 10px; height: 100%; right: 10px;width: 25px; color: black; font-size: 13pt; text-align: right;">张</label>
+		</form>
+	</div>
+		<div style="position: fixed; top: 144px; left: 22px; right: 22px; height: 80px;">
+        <p style="text-align: center;"><span style="color: orange; font-size: 40pt">{{number}}</span><span style="color: orange; font-size: 13pt">张</span></p>
+	</div>
+
+    <div style="height: 44px; position: fixed; top: 264px; left: 50px; right: 50px; background-color: orange; border-radius: 22px; overflow: hidden;" ng-click="createRedPackage()">
+    <p style="top: 7px; width: 100%; height: 100%; font-size: 15pt; text-align: center; position: relative; color: white;">制作房卡</p>
+    </div>
+	<div style="left: 22px; right: 22px; top: {{height - 120}}px; position: fixed;" >
+		<p style="text-align: center; color: #fff; font-size: 12pt"></p>
+	</div>
+	<div style="position: fixed; left: 22px; right: 22px; top: {{height - 60}}px; text-align: center;" ng-click="gotoMyRedPackage()">
+		<p style="color: #6a94fc; font-size: 12pt;text-align: center; width: 100%;">我的房卡记录</p>
+	</div>
+</div>
+
+</body>
+</html>

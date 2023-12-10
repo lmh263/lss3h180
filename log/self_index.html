@@ -1,0 +1,556 @@
+<html>
+<head>
+<meta charset="utf-8" >
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<title>开房查询</title>
+
+<script type="text/javascript" src="/js/config.js"> </script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/load.js"> </script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/other.js"> </script>
+
+
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/fastclick.js"></script>
+
+<link rel="stylesheet" type="text/css" href="http://180.188.22.245:10001/ttshenshou/files/css/bull_vue-1.0.0.css">
+<link rel="stylesheet" type="text/css" href="http://180.188.22.245:10001/ttshenshou/files/css/bullalert.css">
+<link rel="stylesheet" type="text/css" href="http://180.188.22.245:10001/ttshenshou/files/css/bullshop.css">
+<link rel="stylesheet" type="text/css" href="http://180.188.22.245:10001/ttshenshou/files/d_30/css/common/alert.css">
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/bscroll.min.js" ></script>
+<script src="http://180.188.22.245:10001/ttshenshou/files/js/jweixin-1.0.0.js" ></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/vue.min.js" ></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/vue-resource.min.js" ></script>
+
+<script type="text/javascript">
+
+	window.addEventListener('load', function() {
+		FastClick.attach(document.body);
+	}, false);
+
+	var newNum = "";
+	var per = window.innerWidth / 530;
+	var globalData = {
+		"baseUrl": BaseUrl+'/',
+		"openId": "",
+        "dealerNum": "40",
+        "gameList":'[9,5,14,1,26,28,29,42,16,19,24,25,39,47,48,17,22,13,46,12,31,11,27,38,21,20,23,30,32,36,41,43,37,45,49,40,51,33,34,67,1001,1002,1003,1035,1036,1011,1012,1013,1037,1038,1007,1008,1009,1010,1004,1005,1006,1039,1040,1027,1028,1029,1021,1022,1023,1018,1019,1020,1030,1031,1032,1014,1015,1016,1033,1034,1024,1025,1026,1017,2001,2002,2003,2012,2013,2021,2022,2031,2032,2033,2041,2042,2043,2051,2052,2053,2061,2062,2063,2071,2072,2073,2081,3001,3002,3003,3004,3005,3006,3007,3011,3012,3013,3014,3015,3016,3021,3022,3023,3024,3025,3031,3032,3041,3042,3043,3044,3045,3046,3047,3051,3052]',
+        "gameType":'',
+        gameList1 : [-1,"ss","zy","md","cs"],
+	};
+	var userData = {
+		"accountId": "1581095",
+		"nickname": "FatBoy-11806",
+		"avatar": "http://thirdwx.qlogo.cn/mmopen/vi_32/XErROVgjgeJOJ8YibbBAJE9R6gMBCn6tvQx3zibLVibx8HbTrgib3bzGwiaUpwLj8GrGEMrxw2K5hkAq8TAQ0P9L2nA/132",
+		"uid":"1781218",
+	};
+	var configData = {
+		"appId": "wx5455f9cac4940dfd",
+		"timestamp": "1590440458",
+		"nonceStr": "ff2e850f6dc70a322b478d1b4e521cc5",
+		"signature": "9aee6d7d8f6cc5882f3d32aa387fbf397209bef4",
+	};
+
+	var gameIcons = {
+		"-1": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/all_game.png',
+		"ss": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/shenshou.png',
+		"zy": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/zhongyou.png',
+		"md": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/maodou1.png',
+		"cs": 'http://180.188.22.245:10001/ttshenshou/files/images/gameChaoshan/title_chaoshan.png',
+		"1": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_flowerwap.png',
+		"2": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_landlord.png',
+		"6": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_majiang.png',
+		"5": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_bull.png',
+		"4": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_texaspoker.png',
+		"3": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_showha.png',
+		"9": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_bull9.png',
+		"10": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_bullfight.png',
+		"11": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_28gang.png',
+		"12": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_sangong.png',
+		"13": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_sangong9.png',
+		"14": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_bull12.png',
+		"15": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_bull98.png',
+		"16": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/flower9.png',
+		"17": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/jixiang.png',
+		"18": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/fish.png',
+		"19": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/paijiu.png',
+		"20": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/blackjack.png',
+		"21": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/bullNew.png',
+		"22": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/bigpaijiu.png',
+		"23": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/flowerBull.png',
+		"24": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_bullrascal.png',
+		"25": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/gamemix.png',
+		"26": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_superflower.png',
+		"27": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_runfast.png',
+		"28": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_bloodyflower.png',
+		"29": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_flipflower.png',
+		"30": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_texaspoker.png',
+		"31": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_sgboat.png',
+		"32": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_bullturn.png',
+		"33": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_bulldice.png',
+		"34": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_superdice.png',
+		"35": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_runbeard.png',
+		"36": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_water13.png',
+		"37": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_shoot.png',
+		"38": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_superlandlord.png',
+		"39": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_jokergamemix.png',
+		"40": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_mjgd.png',
+		"41": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_water13g.png',
+		"42": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_jbf.png',
+		"43": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/gamelook.png',
+		"44": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_mjlz.png',
+		"45": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_bsg.png',
+		"46": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_21.png',
+		"47": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_jkb12.png',
+		"48": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_sgs12.png',
+		"49": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_tiandi.png',
+		"50": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_mjyb.png',
+		"51": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_runfast2.png',
+		"67": 'http://180.188.22.245:10001/ttshenshou/files/images/activity/rc_icon_dahuatou.png',
+		
+
+		"1001": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bull6.png',
+		"1002": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bull10.png',
+		"1003": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bull13.png',
+		"1035": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bull15.png',
+		"1036": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bull17.png',
+		"1011": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bulll6.png',
+		"1012": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bulll10.png',
+		"1013": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bulll13.png',
+		"1037": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bulll15.png',
+		"1038": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bulll17.png',
+		"1004": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/pin36.png',
+		"1005": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/pin310.png',
+		"1006": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/pin313.png',
+		"1039": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/pin315.png',
+		"1040": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/pin317.png',
+		"1007": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/tianjiu6.png',
+		"1008": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/tianjiu10.png',
+		"1009": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/tianjiu13.png',
+		"1018": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/316.png',
+		"1019": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/3110.png',
+		"1020": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/3113.png',
+		"1030": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bullzz6.png',
+		"1031": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bullzz10.png',
+		"1032": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bullzz13.png',
+		"1027": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/san6.png',
+		"1028": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/san10.png',
+		"1029": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/san13.png',
+		"1033": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/tianjiupai6.png',
+		"1034": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/tianjiupai10.png',
+
+		"1010": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bigtianjiu8.png',
+		"1021": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/jixiang6.png',
+		"1022": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/jixiang10.png',
+		"1023": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/jixiang13.png',
+		
+		"1014": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bull36.png',
+		"1015": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bull310.png',
+		"1016": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bull313.png',
+		
+		"1017": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/fish.png',
+		"1024": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bj6.png',
+		"1025": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bj10.png',
+		"1026": 'http://180.188.22.245:10001/ttshenshou/files/images/gameDao/bj13.png',
+		
+
+
+		"2001": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/bull_6.png',
+		"2002": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/bull_9.png',
+		"2003": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/bull_12.png',
+		
+		"2031": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/flower_6.png',
+		"2032": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/flower_9.png',
+		"2033": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/flower_12.png',
+		
+		"2041": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/bigflower_6.png',
+		"2042": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/bigflower_9.png',
+		"2043": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/bigflower_12.png',
+		
+		"2012": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/bull8_9.png',
+		"2013": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/bull8_12.png',
+		
+		"2021": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/bulllai_6.png',
+		"2022": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/bulllai_9.png',
+		
+		"2051": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/tianjiu_6.png',
+		"2052": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/tianjiu_9.png',
+		"2053": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/tianjiu_12.png',
+		
+		"2061": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/flowerlai_6.png',
+		"2062": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/flowerlai_9.png',
+		"2063": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/flowerlai_12.png',
+		
+		"2071": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/super31_6.png',
+		"2072": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/super31_9.png',
+		"2073": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/super31_12.png',
+		
+		"2081": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/bigtianjiu.png',
+		
+		
+		"3001": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_fish_6.png',
+		"3002": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_fish_10.png',
+		"3003": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_fish_13.png',
+		"3004": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_fish_16.png',
+		"3005": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_fish_18.png',
+		"3006": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_fish_20.png',
+		"3007": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_fish_26.png',
+		
+		"3011": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_anbao_10.png',
+		"3012": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_anbao_13.png',
+		"3013": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_anbao_16.png',
+		"3014": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_anbao_18.png',
+		"3015": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_anbao_20.png',	
+		"3016": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_anbao_26.png',	
+		
+		"3021": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_shaibao_6.png',
+		"3022": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_shaibao_10.png',
+		"3023": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_shaibao_16.png',
+		"3024": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_shaibao_18.png',
+		"3025": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_shaibao_20.png',
+		
+		"3031": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_shengxiao_10.png',
+		"3032": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_shengxiao_13.png',
+		
+		"3041": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_san_6.png',
+		"3042": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_san_10.png',
+		"3043": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_san_13.png',
+		"3044": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_san_16.png',
+		"3045": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_san_18.png',
+		"3046": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_san_20.png',
+		"3047": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_san_26.png',
+		
+		"3051": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_mushi_6.png',
+		"3052": 'http://180.188.22.245:10001/ttshenshou/files/images/gameMore/icon_mushi_12.png',
+	};
+
+	var gameNames = {
+		"-1":'全部游戏',
+		"ss":'神兽游戏',
+		"zy":'众游游戏',
+		"md":'毛豆游戏',
+		"cs":'潮汕游戏',
+		"1": '炸金花',
+		"2": '斗地主',
+		"6": '经典广东',
+		"5": '六人斗牛',
+		"4": '德州扑克',
+		"3": '梭哈',
+		"9": '九人斗牛',
+		"10": '斗公牛',
+		"11": '二八杠',
+		"12": '三公',
+		"13": '九人三公',
+		"14": '十二牛牛',
+		"15": '九人8倍',
+		"16": '九人金花',
+		"17": '吉祥三公',
+		"18": '鱼虾蟹',
+		"19": '牌九',
+		"20": '二十一点',
+		"21": '大吃小',
+		"22": '大牌九',
+		"23": '炸金牛',
+		"24": '癞子牛牛',
+		"25": '三加一',
+		"26": '超级金花',
+		"27": '跑得快',
+		"28": '血战金花',
+		"29": '换牌金花',
+		"30": '德州扑克',
+		"31": '撑船三公',
+		"32": '超级庄家',
+		"33": '骰子牛牛',
+		"34": '超级骰子',
+		"35": '跑胡子',
+		"36": '十三水',
+		"37": '射门',
+		"38": '斗地主',
+		"39": '三加一',
+		"40": '广东麻将',
+		"41": '十三水',
+		"42": '癞子金花',
+		"43": '干瞪眼',
+		"44": '红中杠',
+		"45": '牛三张',
+		"46": '二加一',
+		"47": '12癞子',
+		"48": '三加一',
+		"49": '天地人和',
+		"50": '宜宾麻将',
+		"51": '跑得快',
+		"67": '大话骰',
+		
+		"1001": '6人拼十',
+		"1002": '10人拼十',
+		"1003": '13人拼十',
+		"1035": '15人拼十',
+		"1036": '17人拼十',
+		
+		"1004": '6人拼三',
+		"1005": '10人拼三',
+		"1006": '13人拼三',
+		"1039": '15人拼三',
+		"1040": '17人拼三',
+		
+		"1007": '6人牌九',
+		"1008": '10人牌九',
+		"1009": '13人牌九',
+		
+		"1010": '大牌九',
+		
+		"1011": '6人癞子拼十',
+		"1012": '10人癞子拼十',
+		"1013": '13人癞子拼十',
+		"1037": '15人癞子拼十',
+		"1038": '17人癞子拼十',
+		
+		"1014": '6人牛三张',
+		"1015": '10人牛三张',
+		"1016": '13人牛三张',
+		
+		"1018": '6人超级三加一',
+		"1019": '10人超级三加一',
+		"1020": '13人超级三加一',
+
+		"1021": '6人吉祥三公',
+		"1022": '10人吉祥三公',
+		"1023": '13人吉祥三公',
+		
+		"1027": '6人三条',
+		"1028": '10人三条',
+		"1029": '13人三条',
+		
+		"1030": '6人至尊牛',
+		"1031": '10人至尊牛',
+		"1032": '13人至尊牛',	
+		
+		"1033": '6人扑克天九',
+		"1034": '10人扑克天九',
+		
+		"1017": '鱼虾蟹',
+		
+		"1024": '6人黑杰克',
+		"1025": '10人黑杰克',
+		"1026": '13人黑杰克',
+		
+		"2001": '6人拼十',
+		"2002": '9人拼十',
+		"2003": '12人拼十',
+		
+		"2012": '6人八倍拼十',
+		"2013": '9人八倍拼十',
+		
+		"2031": '6人拼三',
+		"2032": '9人拼三',
+		"2033": '12人拼三',
+		
+		"2041": '6人大牌拼三',
+		"2042": '9人大牌拼三',
+		"2043": '12人大牌拼三',	
+		
+		"2021": '6人王癞拼十',
+		"2022": '9人王癞拼十',
+		
+		"2051": '6人天九',
+		"2052": '9人天九',
+		"2053": '12人天九',
+	
+		"2061": '6人癞子拼三',
+		"2062": '9人癞子拼三',
+		"2063": '12人癞子拼三',
+	
+		"2071": '6人超级三加一',
+		"2072": '9人超级三加一',
+		"2073": '12人超级三加一',
+	
+		"2081": '8人大天九',
+		
+		"3001": '6人葫芦鱼',
+		"3002": '10人葫芦鱼',
+		"3003": '13人葫芦鱼',
+		"3004": '16人葫芦鱼',
+		"3005": '18人葫芦鱼',
+		"3006": '20人葫芦鱼',
+		"3007": '26人葫芦鱼',
+		
+		"3011": '10人暗宝',
+		"3012": '13人暗宝',
+		"3013": '16人暗宝',
+		"3014": '18人暗宝',
+		"3015": '20人暗宝',	
+		"3016": '26人暗宝',	
+		
+		"3021": '6人骰宝',
+		"3022": '10人骰宝',
+		"3023": '16人骰宝',
+		"3024": '18人骰宝',
+		"3025": '20人骰宝',
+		
+		"3031": '10人十二生肖',
+		"3032": '13人十二生肖',
+		
+		"3041": '6人三粒嚼',
+		"3042": '10人三粒嚼',
+		"3043": '13人三粒嚼',
+		"3044": '16人三粒嚼',
+		"3045": '18人三粒嚼',
+		"3046": '20人三粒嚼',
+		"3047": '26人三粒嚼',
+		
+		
+		"3051": '6人木虱',
+		"3052": '12人木虱',
+		
+	};
+	
+
+
+</script>
+
+<style type="text/css">
+	.gameItem{position: absolute;background-color: #291c4d;}
+	.rcIcon{position: absolute;top: 2vw;left: 3vw;width: 9.375vw;height: 9.375vw;}
+	.rcContent{position: absolute;left: 15.375vw;width: 50vw;height: 13.75vw;line-height: 13.75vw;font-size: 12pt;color: white;}
+	.rcArrow{position: absolute;right: 3vw;top: 4.0625vw;width: 3.125vw;height: 5.625vw;}
+	.sendRedpackage{position: absolute;width: 100%;height: 13.75vw;overflow: hidden;background-color: #291c4d;}
+	.redpackage{position: absolute;width: 100%;height: 13.75vw;overflow: hidden;background-color: #291c4d;}
+	.userList{position: absolute;width: 100%;height: 13.75vw;overflow: hidden;background-color: #291c4d;}
+	.datepicker{position: absolute;width: 100%;height: 12.5vw;overflow: hidden;background-color: #291c4d;}
+	.groupMenuDetail{position: absolute;width: 100%;height: 27.5vw;overflow: hidden;background-color: #291c4d;}
+	.gameMenu{position: relative;width: 100%;height: 25vw;background-color: #291c4d;text-align: center;overflow: hidden;}
+	.gameListItem{position: absolute;width: 18vw;height: 25vw;font-size: 12pt;color: white;text-align: center;}
+	.gameScoreTitle{position: relative;width: 100%;height: 13vw;line-height: 13vw;font-size: 12pt;color: white;text-align: center;background-color: #291c4d;}
+	[v-cloak] {
+		display:none !important;
+	}
+</style>
+
+</head>
+<img src="" style="display: none;">
+<body style="background-color: #0e0226">
+	<div id="loading" style="position: fixed;width:100%;height:100%;top:0;left:0;background: #000" >
+		<img src="http://180.188.22.245:10001/ttshenshou/files/images/loading.gif" style="top: 40%;position: absolute;left: 50%;margin-left: -45px;margin-top: -45px;" />
+	</div>
+
+	<div class="main" id="app-main" style="position: relative; width: 100%;margin: 0 auto; background: #0e0226;" v-cloak>
+
+		<div class="alert" id="valert" v-show="isShowAlert">
+			<div class="alertBack"></div>
+			<div class="mainPart">
+				<div class="backImg">
+					<div class="blackImg"></div>
+				</div>
+				<div class="alertText">{{alertText}}</div>				
+				<div v-show="alertType==3">
+					<div class="buttonLeft" v-on:click="closeAlert">确定</div>
+					<div class="buttonRight" v-on:click="closeAlert">取消</div>
+				</div>			
+				<div v-show="alertType==7">
+					<div class="buttonMiddle" v-on:click="closeAlert">确定</div>
+				</div>	
+				<div v-show="alertType==8">
+				</div>
+				<div v-show="alertType==23">
+					<div class="buttonMiddle" v-on:click="finishBindPhone()">确定</div>
+				</div>
+				<div v-show="alertType==24">
+					<div class="buttonLeft" v-on:click="closeAlert">取消</div>
+					<div class="buttonRight" v-on:click="confirmOpenGroup">确定</div>
+				</div>
+				<div v-show="alertType==25">
+					<div class="buttonLeft" v-on:click="closeAlert">取消</div>
+					<div class="buttonRight" v-on:click="confirmCloseGroup">确定</div>
+				</div>						
+			</div>
+		</div>
+
+		<div id="memberDiv1" class="gameMenu" style="margin-top: 20px;" v-bind:style="'width:'+width+'px;'">
+			<div v-bind:style="'position: relative;width:' + gameItems1.length * 0.215 * width + 'px;'">
+				<div v-for="(item,index) in gameItems1" class="gameListItem" v-bind:style="'left:' + (0.03 * width + index * 0.18 * width + 0.03 * width * index) + 'px;text-align: center;'" v-on:click="clickGame(item)" v-bind:id="'game'+item.type">
+					<img v-bind:src="item.avatar" style="position: absolute;top: 1.5vw;left: 1vw;width: 16vw;height: 16vw;">
+					<div style="position: absolute;bottom: 1.5vw;width: 100%;text-align: center;font-size: 2vh;">{{item.name}}</div>
+				</div>
+			</div>
+		</div>
+ 
+		<div id="memberDiv2" class="gameMenu" v-show="selectedGame.type=='ss'||selectedGame.type>0&&selectedGame.type<1000"  style="margin-top: 4px;height: 19vw;" v-bind:style="'width:'+width+'px;'">
+			<div v-bind:style="'position: relative;width:' + gameItems2.length * 0.215 * width + 'px;'">
+				<div v-for="(item,index) in gameItems2" class="gameListItem" v-bind:style="'left:' + (0.03 * width + index * 0.18 * width + 0.03 * width * index) + 'px;text-align: center;'" v-on:click="clickGame(item)" v-bind:id="'game'+item.type">
+					<img v-bind:src="item.avatar" style="position: absolute;top: 1.5vw;left: 1vw;width: 16vw;height: 16vw;">
+				</div>
+			</div>
+		</div>		
+		
+		<div id="memberDiv3" class="gameMenu" v-show="selectedGame.type=='zy'||(selectedGame.type>1000&&selectedGame.type<2000)"  style="margin-top: 4px;height: 19vw;" v-bind:style="'width:'+width+'px;'">
+			<div v-bind:style="'position: relative;width:' + gameItems3.length * 0.215 * width + 'px;'">
+				<div v-for="(item,index) in gameItems3" class="gameListItem" v-bind:style="'left:' + (0.03 * width + index * 0.18 * width + 0.03 * width * index) + 'px;text-align: center;'" v-on:click="clickGame(item)" v-bind:id="'game'+item.type">
+					<img v-bind:src="item.avatar" style="position: absolute;top: 1.5vw;left: 1vw;width: 16vw;height: 16vw;">
+				</div>
+			</div>
+		</div>
+		
+		<div id="memberDiv4" class="gameMenu" v-show="selectedGame.type=='md'||(selectedGame.type>2000&&selectedGame.type<3000)"  style="margin-top: 4px;height: 19vw;" v-bind:style="'width:'+width+'px;'">
+			<div v-bind:style="'position: relative;width:' + gameItems4.length * 0.215 * width + 'px;'">
+				<div v-for="(item,index) in gameItems4" class="gameListItem" v-bind:style="'left:' + (0.03 * width + index * 0.18 * width + 0.03 * width * index) + 'px;text-align: center;'" v-on:click="clickGame(item)" v-bind:id="'game'+item.type">
+					<img v-bind:src="item.avatar" style="position: absolute;top: 1.5vw;left: 1vw;width: 16vw;height: 16vw;">
+				</div>
+			</div>
+		</div>
+
+		<div id="memberDiv5" class="gameMenu" v-show="selectedGame.type=='cs'||selectedGame.type>3000"  style="margin-top: 4px;height: 19vw;" v-bind:style="'width:'+width+'px;'">
+			<div v-bind:style="'position: relative;width:' + gameItems5.length * 0.215 * width + 'px;'">
+				<div v-for="(item,index) in gameItems5" class="gameListItem" v-bind:style="'left:' + (0.03 * width + index * 0.18 * width + 0.03 * width * index) + 'px;text-align: center;'" v-on:click="clickGame(item)" v-bind:id="'game'+item.type">
+					<img v-bind:src="item.avatar" style="position: absolute;top: 1.5vw;left: 1vw;width: 16vw;height: 16vw;">
+				</div>
+			</div>
+		</div>
+
+		<div class="gameScoreTitle"  style="margin-top: 4px;">
+			<div style="position: absolute;left: 5vw;font-size: 12pt;color: white">
+				房间号
+			</div>
+			<div style="position: absolute;width: 100%;font-size: 12pt;color: white;text-align: center;">
+				创建时间
+			</div>
+			<div style="position: absolute;right: 5vw;font-size: 12pt;color: white;text-align: right;">
+				游戏
+			</div>
+		</div>
+
+		<div style="position: relative;margin-top: 4px ;" >
+			<div style="position: relative;">
+				<div v-for="(item, index) in gameScoreList" style="position: relative;width: 100%;height: 13vw;line-height: 13vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;" v-on:click="clickScoreItem(item)">
+					<div style="position: absolute;left: 5vw;font-size: 12pt;color: orange;text-align: left;">
+						{{item.number}}
+					</div>
+					<div style="position: absolute;width: 100%;font-size: 12pt;color: white;text-align: center;">
+						{{item.time}}
+					</div>
+					<!-- <div style="position: absolute;right: 5vw;font-size: 12pt;color: white;text-align: right;" v-show="item.status==2">
+						未开局
+					</div>
+					<div style="position: absolute;right: 5vw;font-size: 12pt;color: lightgray;text-align: right;" v-show="item.status==1">
+						已完成
+					</div> -->
+					<div style="position: absolute;right: 5vw;font-size: 12pt;color: lightgray;text-align: right;" v-show="item.status==1">
+						{{item.name}}
+					</div>
+				</div>
+				<div id="moretext" style="position: relative;margin-top: 4px;color: #39d7ff;height: 13vw;text-align: center;line-height: 13vw;font-size: 2.2vh;background-color: #291c4d;display: none;" v-on:click="clickMore">
+					点击加载更多
+				</div>
+				<div style="position: relative;background-color: rgba(0,0,0,0);width: 100vw;height: 22vw;"></div>
+			</div>
+		</div>
+
+		<img src="http://180.188.22.245:10001/ttshenshou/files/images/common/common_back.png" style="position: fixed;bottom: 0;width: 100vw;height: 22vw;" onClick="javascript :history.go(-1);">
+
+	</div>
+</body>
+
+
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/d_30/js/gscore/roomlist/roomlist-1.0.12.js"></script>
+
+</html>

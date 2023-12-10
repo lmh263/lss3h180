@@ -1,0 +1,273 @@
+<html>
+<head>
+<meta charset="utf-8" >
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<title>成员</title>
+
+<script type="text/javascript" src="/js/config.js"> </script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/load.js"> </script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/other.js"> </script>
+
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/fastclick.js"></script>
+
+<link rel="stylesheet" type="text/css" href="http://180.188.22.245:10001/ttshenshou/files/css/bull_vue-1.0.0.css">
+<link rel="stylesheet" type="text/css" href="http://180.188.22.245:10001/ttshenshou/files/css/bullalert.css">
+<link rel="stylesheet" type="text/css" href="http://180.188.22.245:10001/ttshenshou/files/css/bullshop.css">
+<link rel="stylesheet" type="text/css" href="http://180.188.22.245:10001/ttshenshou/files/d_30/css/common/alert.css">
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/bscroll.min.js" ></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/base64.js" ></script>
+<script src="http://180.188.22.245:10001/ttshenshou/files/js/jweixin-1.0.0.js" ></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/vue.min.js" ></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/vue-resource.min.js" ></script>
+
+<script type="text/javascript">
+
+	window.addEventListener('load', function() {
+		FastClick.attach(document.body);
+	}, false);
+
+	var newNum = "";
+	var per = window.innerWidth / 530;
+	var globalData = {
+		"baseUrl": BaseUrl+'/',
+		"openId": "",
+        "dealerNum": "40",
+	};
+	var userData = {
+		"accountId": DynLoading.getUrlParam("i").replace("_", ""),
+		"nickname": "FatBoy-11806",
+		"avatar": "http://thirdwx.qlogo.cn/mmopen/vi_32/XErROVgjgeJOJ8YibbBAJE9R6gMBCn6tvQx3zibLVibx8HbTrgib3bzGwiaUpwLj8GrGEMrxw2K5hkAq8TAQ0P9L2nA/132",
+		"uid":xobj.user.id,
+		"org_id":'108289',
+        'org_role':'1',
+        'org_name':'MTIzYWJjMTIzYWJjMTIz',
+	};
+	var configData = {
+		"appId": "wx5455f9cac4940dfd",
+		"timestamp": "1590334336",
+		"nonceStr": "a28680f297bc4316a016fa99a4bb48af",
+		"signature": "6b94928c49ade941faba809a63fde0a3d98fb962",
+	};
+
+</script>
+
+<style type="text/css">
+
+#app-main .alertB{position: fixed;z-index: 9997;width: 150px;height: 150px;top:50%;left: 50%;margin-top: -75px;margin-left: -75px;border-radius:5px;overflow:hidden;}
+#app-main .alertB .alertBackgroundB{filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5;background: #000;height: 100%;width: 100%;}
+#app-main .alertB img{position: absolute;top:10px;left: 29px;}
+#app-main .alertB .alertTextB{position: absolute;top:100px;width:150px;text-align: center;font-size: 18px;color: #fff;filter:alpha(opacity=95);-moz-opacity:0.95;opacity:0.95;}
+
+.gameItem{position: absolute;background-color: #291c4d;}
+.rcIcon{position: absolute;top: 2vw;left: 3vw;width: 9.375vw;height: 9.375vw;}
+.rcContent{position: absolute;left: 15.375vw;width: 50vw;height: 13.75vw;line-height: 13.75vw;font-size: 12pt;color: white;}
+.rcArrow{position: absolute;right: 3vw;top: 4.0625vw;width: 3.125vw;height: 5.625vw;}
+.sendRedpackage{position: absolute;width: 100%;height: 13.75vw;overflow: hidden;background-color: #291c4d;}
+.redpackage{position: absolute;width: 100%;height: 13.75vw;overflow: hidden;background-color: #291c4d;}
+.userList{position: absolute;width: 100%;height: 13.75vw;overflow: hidden;background-color: #291c4d;}
+.datepicker{position: absolute;width: 100%;height: 12.5vw;overflow: hidden;background-color: #291c4d;}
+.groupMenuDetail{position: absolute;width: 100%;height: 27.5vw;overflow: hidden;background-color: #291c4d;}
+.gameMenu{position: absolute;width: 100%;height: 25vw;background-color: #291c4d;text-align: center;overflow: hidden;}
+.gameListItem{position: absolute;width: 18vw;height: 25vw;font-size: 12pt;color: white;text-align: center;}
+.gameScoreTitle{position: absolute;width: 100%;height: 13vw;line-height: 13vw;font-size: 12pt;color: white;text-align: center;background-color: #291c4d;}
+
+
+.delete{position: fixed;top:0;left:0;width:100%;height: 100%;z-index: 16;}
+
+.delete .box{position: absolute;top:40vw;left:5vw;width:90%;height: 78vw;border-radius:1.5vw;background: #fff;}
+.delete .box .title{text-align: center;line-height: 16vw;font-size: 4.5vw;}
+.delete .box .info{line-height: 10vw;font-size: 4vw;width: 70vw;margin-left: 10vw;margin-top: 4vw;}
+.delete .box .info img{height: 10vw;width:10vw;float: left;}
+.delete .box .info .name{float: left;margin-left: 3vw}
+.delete .box input{margin-left: 10vw;width: 66vw;background: #f0f0f2;border-radius:1.5vw;height: 11vw;margin-top:5vw;padding: 0 2vw;font-size: 4vw;}
+.delete .box .button{margin-left: 25vw;width: 40vw;background: #ff5555;color: #fff;border-radius:1.5vw;height: 11vw;margin-top:10vw;text-align: center;line-height: 11vw;font-size: 3.6vw;}
+.delete .box .note{position: absolute;width: 70vw;left:10vw;color: #ff5555;font-size:3vw;}
+
+[v-cloak] {
+	display:none !important;
+}
+</style>
+
+</head>
+<img src="" style="display: none;">
+<body style="background-color: #0e0226">
+	<div id="loading" style="position: fixed;width:100%;height:100%;top:0;left:0;background: #000" >
+		<img src="http://180.188.22.245:10001/ttshenshou/files/images/loading.gif" style="top: 40%;position: absolute;left: 50%;margin-left: -45px;margin-top: -45px;" />
+	</div>
+
+	<div class="main" id="app-main" style="position: relative; width: 100%;margin: 0 auto; background: #0e0226;" v-cloak>
+
+		<div class="alert" id="valert" v-show="isShowAlert">
+			<div class="alertBack"></div>
+			<div class="mainPart">
+				<div class="backImg">
+					<div class="blackImg"></div>
+				</div>
+				<div class="alertText">{{alertText}}</div>				
+				<div v-show="alertType==3">
+					<div class="buttonLeft" v-on:click="closeAlert">确定</div>
+					<div class="buttonRight" v-on:click="closeAlert">取消</div>
+				</div>			
+				<div v-show="alertType==7">
+					<div class="buttonMiddle" v-on:click="closeAlert">确定</div>
+				</div>	
+				<div v-show="alertType==8">
+				</div>
+				<div v-show="alertType==23">
+					<div class="buttonMiddle" v-on:click="finishBindPhone()">确定</div>
+				</div>
+				<div v-show="alertType==41">
+					<div class="buttonLeft" v-on:click="closeAlert">取消</div>
+					<div class="buttonRight" v-on:click="confirmAgree">确定</div>
+				</div>	
+				<div v-show="alertType==42">
+					<div class="buttonLeft" v-on:click="closeAlert">取消</div>
+					<div class="buttonRight" v-on:click="confirmDisagree">确定</div>
+				</div>	
+				<div v-show="alertType==43">
+					<div class="buttonLeft" v-on:click="closeAlert">取消</div>
+					<div class="buttonRight" v-on:click="confirmRemove">确定</div>
+				</div>						
+			</div>
+		</div>
+
+		<div class="alertB" v-show="isShowAlertB">
+			<div class="alertBackgroundB"></div>
+			<img src="http://180.188.22.245:10001/ttshenshou/files/images/center/alert1.png" v-show="alertTypeB==2">
+			<img src="http://180.188.22.245:10001/ttshenshou/files/images/center/alert2.png" v-show="alertTypeB==1">
+			<div class="alertTextB" >{{alertTextB}}</div>
+		</div>
+		
+
+		<div class="delete" v-show="addUser.isShow">
+			<div class="greyBack" v-on:click="hideAddUser"> </div>
+			<div class="box" style="height: 62vw;">
+				<img src="http://180.188.22.245:10001/ttshenshou/files/images/center/cancel.png" style="position: absolute;top: -2vh;right: -2vh;width: 4.5vh;height: 4.5vh;" v-on:click="hideAddUser">
+				<div class="title">备注</div>
+				<div style="margin-left: 10vw;font-size: 4vw;">
+					成员：{{addUser.name}}
+				</div>
+				<div style="margin-top: 6vw;height: 11vw;border-radius: 1.5vw;margin-left: 10vw;width: 70vw;">
+					<div style="position: absolute;height: 11vw;line-height: 11vw;color: black;margin-left: 0vw;font-size: 4vw;">备注：</div>
+					<input style="position: absolute;background-color: #f0f0f2;margin-top: 0;margin-left: 12vw;width: 60vw;height: 11vw;text-align: left;" v-on:input="changeRemark()" v-model="addUser.remark" placeholder="" />
+				</div>
+				<div class="note" v-show="addUser.isShow2" style="position: absolute;top: 38vw;">{{addUser.text2}}</div>
+
+				<div class="button" style="position: absolute;top: 45vw;margin-top: 0;background-color: #6d7dd4;"   v-on:click="confirmRemarkMember">修改</div>
+			</div>
+		</div>
+
+
+		<div style="top: 14vw;left: 0;width: 100%;" >
+			<div style="position: relative;top: 4vw;">
+				<div v-for="(item, index) in gameScoreList" style="position: relative;width: 100%;height: 18vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;" >
+				    <img v-bind:src="item.avatar" style="position: absolute;top: 3vw;left: 3vw;width: 12vw;height: 12vw;">
+
+				    <img src="http://180.188.22.245:10001/ttshenshou/files/images/h5/guanli_05.png" style="position: absolute;top: 1vw;left: 1vw;width: 7vw;height: 7vw;" v-show="item.role==2">
+				    <img src="http://180.188.22.245:10001/ttshenshou/files/images/h5/huizhang_03.png" style="position: absolute;top: 1vw;left: 1vw;width: 7vw;height: 7vw;" v-show="item.role==1">
+
+					<div style="position: absolute;top:2vw;width: 100%;left: 18vw;font-size: 11pt;color: white;text-align: left;">
+						{{item.remark}}
+					</div>
+					<div style="position: absolute;top:1vw;height: 100%;line-height: 18vw;width: 100%;left: 18vw;font-size: 9pt;color: white;text-align: left;">
+						昵称：{{item.name}}
+					</div>
+					<div style="position: absolute;bottom: 2vw;width: 100%;left: 18vw;font-size: 9pt;color: #39d7ff;text-align: left;">
+						ID:{{item.code}}
+					</div>
+
+					<!-- <div style="position: absolute;right: 28vw;top: 5vw;width: 13vw;height: 8vw;line-height: 8vw;border-radius: 0.5vw;background-color: rgb(112,181,213);text-align: center;font-size: 2vh;" v-show="item.status==1" v-on:click="clickAgree(item)">
+						同意
+					</div>
+					<div style="position: absolute;right: 4vw;top: 5vw;width: 13vw;height: 8vw;line-height: 8vw;border-radius: 0.5vw;background-color: rgb(198,146,53);text-align: center;font-size: 2vh;" v-show="item.status==1" v-on:click="clickDisagree(item)">
+						拒绝
+					</div> -->
+					<div style="position: absolute;right: 4vw;top: 5vw;width: 13vw;height: 8vw;line-height: 8vw;border-radius: 0.5vw;background-color: rgb(112,127,206);text-align: center;font-size: 2vh;" v-show="item.status==-1" v-on:click="clickRemark(item)">
+						备注
+					</div>
+
+					<div style="position: absolute;right: 4vw;top: 5vw;width: 13vw;height: 8vw;line-height: 8vw;border-radius: 0.5vw;background-color: rgb(112,127,206);text-align: center;font-size: 2vh;" v-show="myRole==2&&item.role<=2" v-on:click="clickRemark(item)">
+						备注
+					</div>
+
+					<div style="position: absolute;right: 20vw;top: 5vw;width: 13vw;height: 8vw;line-height: 8vw;border-radius: 0.5vw;background-color: rgb(112,127,206);text-align: center;font-size: 2vh;" v-show="item.status==2&&myRole==2&&item.role>2" v-on:click="clickRemark(item)">
+						备注
+					</div>
+					<div style="position: absolute;right: 4vw;top: 5vw;width: 13vw;height: 8vw;line-height: 8vw;border-radius: 0.5vw;background-color: rgb(245,209,104);text-align: center;font-size: 2vh;color: rgb(116,51,46);" v-show="item.status==2&&myRole==2&&item.role>2" v-on:click="clickOperation(item)">
+						设置
+					</div>
+
+					<div style="position: absolute;right: 20vw;top: 5vw;width: 13vw;height: 8vw;line-height: 8vw;border-radius: 0.5vw;background-color: rgb(112,127,206);text-align: center;font-size: 2vh;" v-show="item.status==2&&myRole==1" v-on:click="clickRemark(item)">
+						备注
+					</div>
+					<div style="position: absolute;right: 4vw;top: 5vw;width: 13vw;height: 8vw;line-height: 8vw;border-radius: 0.5vw;background-color: rgb(245,209,104);text-align: center;font-size: 2vh;color: rgb(116,51,46);" v-show="item.status==2&&myRole==1" v-on:click="clickOperation(item)">
+						设置
+					</div>
+				</div>
+				<div id="moretext" style="position: relative;margin-top: 4px;color: #39d7ff;height: 14vw;text-align: center;line-height: 14vw;font-size: 2.2vh;background-color: #291c4d;display: none;" v-on:click="clickMore">
+					点击加载更多
+				</div>
+
+				<div style="position: relative;background-color: rgba(0,0,0,0);width: 100vw;height: 22vw;"></div>
+
+			</div>
+		</div>
+
+
+
+
+		<img src="http://180.188.22.245:10001/ttshenshou/files/images/common/common_back.png" style="position: fixed;bottom: 0;width: 100vw;height: 22vw;" onClick="javascript :history.go(-1);">
+
+
+		<div style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;" v-show="showOperation">
+			<div style="position: absolute;width: 100%;height: 100%;background-color: rgba(0,0,0,0.5);" v-on:click="hideMoreOperation()"></div>
+
+			<div style="position: absolute;bottom: -50vw;width: 100vw;height: 50vw;background-color: rgba(0,0,0,0);" id="manager_sheet">
+
+				<div style="position: absolute;bottom: 16vw;width: 90vw;height: 28vw;left: 5vw;background-color: white;border-radius: 2vw;" v-show="selectedItem && selectedItem.role!=2">
+					<div style="position: absolute;top: 16vw;width: 100%;height: 1px;background-color: lightgray;"></div>
+					<div style="position: absolute;top: 0;width: 100%;height: 16vw;text-align: center;" v-on:click="clickAddManager(selectedItem)">
+						<div style="position: absolute;width: 100%;line-height: 12vw;text-align: center;color: rgb(62,126,215);" >
+							设为管理员
+						</div>
+						<div style="position: absolute;width: 100%;top: 9vw;height: 6vw;line-height: 6vw;text-align: center;color: gray;font-size: 10px;">
+							管理员具有创建游戏，开房查询，拉人等权限
+						</div>
+					</div>
+					<div style="position: absolute;top: 16vw;width: 100%;height: 12vw;;line-height: 12vw;text-align: center;color: red;" v-on:click="clickRemove(selectedItem)">
+						踢出
+					</div>
+				</div>
+
+				<div style="position: absolute;bottom: 16vw;width: 90vw;height: 28vw;left: 5vw;background-color: white;border-radius: 2vw;" v-show="selectedItem && selectedItem.role==2">
+					<div style="position: absolute;top: 16vw;width: 100%;height: 1px;background-color: lightgray;"></div>
+					<div style="position: absolute;top: 0;width: 100%;height: 16vw;text-align: center;" v-on:click="clickRemoveManager(selectedItem)">
+						<div style="position: absolute;width: 100%;line-height: 12vw;text-align: center;color: red;" >
+							取消管理员
+						</div>
+						<div style="position: absolute;width: 100%;top: 9vw;height: 6vw;line-height: 6vw;text-align: center;color: gray;font-size: 10px;">
+							管理员具有创建游戏，开房查询，拉人等权限
+						</div>
+					</div>
+					<div style="position: absolute;top: 16vw;width: 100%;height: 12vw;;line-height: 12vw;text-align: center;color: red;" v-on:click="clickRemove(selectedItem)">
+						踢出
+					</div>
+				</div>
+
+				<div style="position: absolute;bottom: 2vw;width: 90vw;height: 12vw;line-height: 12vw;left: 5vw;background-color: white;border-radius: 2vw;text-align: center;color: rgb(62,126,215);" v-on:click="hideMoreOperation()">
+					取消
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</body>
+
+
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/d_30/js/gscore/gMember/gMember-1.0.7.js"></script>
+
+</html>

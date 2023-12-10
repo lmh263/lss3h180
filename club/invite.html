@@ -1,0 +1,150 @@
+<html ng-app="app">
+<head>
+<meta charset="utf-8" >
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<title>邀请函</title>
+
+<script type="text/javascript" src="/js/config.js"> </script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/load.js"> </script>
+
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js"></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/fastclick.js"></script>
+<link rel="stylesheet" type="text/css" href="http://180.188.22.245:10001/ttshenshou/files/css/activity.css">
+<link rel="stylesheet" type="text/css" href="http://180.188.22.245:10001/ttshenshou/files/css/common/alert.css">
+
+<script type="text/javascript">
+
+    var id = DynLoading.getUrlParam("i").replace("_", "");
+    var xobj = DynLoading.hall(BaseUrl + '/club/invite?id='+id);
+
+    window.addEventListener('load', function() {
+        FastClick.attach(document.body);
+    }, false);
+
+    var newNum = "";
+    var per = window.innerWidth / 530;
+    var globalData = {
+        "baseUrl": BaseUrl+'/',
+        "openId": "",
+        "dealerNum": 45,
+        "fileUrl": "http://180.188.22.245:10001/ttshenshou/",
+		"imageUrl": "http://180.188.22.245:10001/ttshenshou/",
+        "shareIcon": "http://atw.v-act.com/files/images/guild/invitation.png",
+        "shareUrl": '',
+        "inviteName":xobj.owner['name'],
+        "inviteCode":xobj.club_id,
+        "inviteAccountCode":xobj.owner['id'],
+        "inviteAvatar":xobj.owner['avatar'],
+        "isJoin":'1',
+        'CanShareUrl':'0',
+    };
+    var userData = {
+        "accountId": xobj.user.id,
+        "nickname": xobj.user.name,
+        "avatar": xobj.user.avatar,
+    };
+    var configData = {
+        "appId": "wx5455f9cac4940dfd",
+        "timestamp": "1590338089",
+        "nonceStr": "1374eddea8f4589966cc7ca02038dcae",
+        "signature": "0afcddefdce66094c25ab923d7be885359ff9d0b",
+    };
+    var share_url=window.location.href;
+
+    function ready(callback) {
+        if (window.AlipayJSBridge) {
+            callback && callback();
+        } else {
+            document.addEventListener('AlipayJSBridgeReady', callback, false);
+        }
+    }
+    ready(function () {
+        AlipayJSBridge.call('hideOptionMenu');
+    });
+
+</script>
+
+</head>
+
+<style>
+	  .alertB{position: fixed;z-index: 9997;width: 150px;height: 150px;top:50%;left: 50%;margin-top: -75px;margin-left: -75px;border-radius:5px;overflow:hidden;}
+       .alertB .alertBackgroundB{filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5;background: #000;height: 100%;width: 100%;}
+       .alertB img{position: absolute;top:10px;left: 29px;}
+       .alertB .alertTextB{position: absolute;top:100px;width:150px;text-align: center;font-size: 18px;color: #fff;filter:alpha(opacity=95);-moz-opacity:0.95;opacity:0.95;}
+</style>
+<img src="" style="display: none;">
+<body ng-controller="myCtrl" style="background: #000;" >
+<div style="position: fixed;width:100%;height:100%;top:0;left:0;background: #000" id="loading">
+	<img src="http://180.188.22.245:10001/ttshenshou/files/images/loading.gif" style="top: 40%;position: absolute;left: 50%;margin-left: -45px;margin-top: -45px;" />
+</div>
+<div class="main" style="display: none;">
+	
+	<img src="http://180.188.22.245:10001/ttshenshou/files/images/activity/union_bg.jpg"  style="top: 0;left: 0;width: 100%;height: 100%;position: relative;">
+		<div>
+			<img src="http://180.188.22.245:10001/ttshenshou/files/images/button/box_btn_copytext1.png"  style="top: 1.5%;right:10px;width: 18vw;position: fixed;z-index:90;" />	
+			<button class="btn" data-clipboard-action="copy" data-clipboard-target="#foo" style="top: 1.5%;right:10px;width: 18vw;position: fixed;z-index:90;height: 8vw;opacity: 0"></button>
+			<input id="foo" type="text"  style="width: 1px;height: 1px;background-color: rgba(0,0,0,0);" readOnly="false">
+		</div>
+	
+        <div class="alert" id="valert" ng-show="isShowAlert" >
+            <div class="alertBack"></div>
+            <div class="mainPart">
+                <div class="backImg">
+                    <div class="blackImg"></div>
+                </div>
+                <div class="alertText">{{alertText}}</div>              
+                <div ng-show="alertType==3">
+                    <div class="buttonLeft" ng-click="closeAlert()">确定</div>
+                    <div class="buttonRight" ng-click="closeAlert()">取消</div>
+                </div>          
+                <div ng-show="alertType==7">
+                    <div class="buttonMiddle" ng-click="closeAlert()">确定</div>
+                </div>  
+                <div ng-show="alertType==8">
+                </div>          
+            </div>
+        </div>
+        
+        <div style="position: absolute;top: 10vh;left: 50%;margin-left: -25vh;height: 80vh;width: 50vh;" ng-if="showType==1">
+            <img src="http://180.188.22.245:10001/ttshenshou/files/images/activity/union_card.jpg" style="position: absolute;top: 0;left: 1vh;width: 48vh;height: 100%;">
+            <img src="http://180.188.22.245:10001/ttshenshou/files/images/activity/union_card_bottom.png" style="position: absolute;bottom: 0;width: 50vh;height: 35.25vh;">
+            <div class="imgOpen" style="position: absolute;bottom: 10vh;left: 50%;margin-left: -10vh;width: 20vh;height: 20vh;backface-visibility:hidden;" ng-click="clickJoin()">
+                <img  ng-src="{{joinImg}}" style="position: absolute;width: 20vh;height: 20vh;transform: rotate({{img.rotate}}deg);" >
+            </div>
+
+            <img ng-src="{{inviteAvatar}}" style="position: absolute;top: 12vh;left: 50%;margin-left: -6vh;width: 12vh;height: 12vh;border-radius: 6vh;">
+            <div style="position: absolute;top: 25vh;width: 100%;height: 5vh;line-height: 5vh;text-align: center;color: orange;font-size: 2.5vh">
+                {{inviteName}}
+            </div>
+            <div style="position: absolute;top: 32vh;width: 100%;height: 5vh;line-height: 5vh;text-align: center;color: orange;font-size: 3vh;">
+                邀请你玩游戏
+            </div>
+        </div>
+
+        <div style="position: absolute;top: 10vh;left: 50%;margin-left: -25vh;height: 80vh;width: 50vh;" ng-if="showType==2">
+            <img  src="http://180.188.22.245:10001/ttshenshou/files/images/activity/union_card.jpg" style="position: absolute;top: 0;left: 0;width: 50vh;height: 100%;">
+            <img src="http://180.188.22.245:10001/ttshenshou/files/images/activity/union_finish.png" style="position: absolute;top: 29vh;left: 50%;margin-left: -6vh;width: 12vh;height: 12vh;">
+            <div style="position: absolute;top: 43vh;width: 100%;height: 5vh;text-align: center;font-size: 3vh;color: orange;font-weight: bold;">
+                {{resultText}}
+            </div>
+        </div>
+    
+	<div class="alertB" ng-show="isShowAlertB">
+		<div class="alertBackgroundB"></div>
+		<img src="http://180.188.22.245:10001/ttshenshou/files/images/center/alert1.png" ng-show="alertTypeB==2">
+		<img src="http://180.188.22.245:10001/ttshenshou/files/images/center/alert2.png" ng-show="alertTypeB==1">
+		<div class="alertTextB" >{{alertTextB}}</div>
+	</div>
+</div>
+
+</body>
+
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/angular.min.js"></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/base64.js"></script>
+<script src="http://180.188.22.245:10001/ttshenshou/files/js/jweixin-1.0.0.js" ></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/d_30/js/gscore/inviteDetail/inviteDetail-1.1.3.js"></script>
+
+</html>

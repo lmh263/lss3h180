@@ -1,0 +1,1560 @@
+<html>
+<head>
+<meta charset="utf-8" >
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<title>战绩详情</title>
+
+<script type="text/javascript" src="/js/config.js"> </script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/load.js"> </script>
+
+<link rel="stylesheet" type="text/css" href="http://180.188.22.245:10001/ttshenshou/files/css/bullalert.css">
+<link rel="stylesheet" type="text/css" href="http://180.188.22.245:10001/ttshenshou/files/d_30/css/common/alert.css">
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/fastclick.js"></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/bscroll.min.js" ></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/base64.js" ></script>
+<script src="http://180.188.22.245:10001/ttshenshou/files/js/jweixin-1.0.0.js" ></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/vue.min.js" ></script>
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/js/vue-resource.min.js" ></script>
+
+<script type="text/javascript">
+
+var id = DynLoading.getUrlParam("i").replace("_", "");
+var xobj = DynLoading.hall(BaseUrl + '/log/detail?id='+id);
+
+window.addEventListener('load', function() {
+		FastClick.attach(document.body);
+	}, false);
+
+	var newNum = "";
+	var per = window.innerWidth / 530;
+	
+
+
+	var globalData = {
+		"baseUrl": "http://shl.hbgerui168.com/",
+		"openId": "",
+        "dealerNum": "40",
+        "gameType":xobj.self_type,
+        "roomNumber":xobj.room_id,
+        "scoreInfo":xobj.detail,
+        "creatorID":'',
+        "room_url":xobj.room_url
+    };
+
+	var userData = {
+		"accountId": "1581095",
+		"nickname": "FatBoy-11806",
+		"avatar": "http://thirdwx.qlogo.cn/mmopen/vi_32/XErROVgjgeJOJ8YibbBAJE9R6gMBCn6tvQx3zibLVibx8HbTrgib3bzGwiaUpwLj8GrGEMrxw2K5hkAq8TAQ0P9L2nA/132",
+		"uid":"1781218",
+	};
+	var configData = {
+		"appId": "wx5455f9cac4940dfd",
+		"timestamp": "1590442581",
+		"nonceStr": "e12772cfefc9cafe59d36eeb12ecb005",
+		"signature": "3f5b239e557cb0a4f2817dccd531558463837336",
+	};
+
+	globalData.scoreInfo=eval('(' + globalData.scoreInfo + ')');
+	console.log(globalData.scoreInfo)
+	var isRemark = false;
+	if (globalData.creatorID == userData.accountId) {
+		isRemark = true;
+	}
+	
+</script>
+
+<style type="text/css">
+	.gameItem{position: absolute;background-color: #291c4d;}
+	.rcIcon{position: absolute;top: 2vw;left: 3vw;width: 9.375vw;height: 9.375vw;}
+	.rcContent{position: absolute;left: 15.375vw;width: 50vw;height: 13.75vw;line-height: 13.75vw;font-size: 12pt;color: white;}
+	.rcArrow{position: absolute;right: 3vw;top: 4.0625vw;width: 3.125vw;height: 5.625vw;}
+	.sendRedpackage{position: absolute;width: 100%;height: 13.75vw;overflow: hidden;background-color: #291c4d;}
+	.redpackage{position: absolute;width: 100%;height: 13.75vw;overflow: hidden;background-color: #291c4d;}
+	.userList{position: absolute;width: 100%;height: 13.75vw;overflow: hidden;background-color: #291c4d;}
+	.datepicker{position: absolute;width: 100%;height: 12.5vw;overflow: hidden;background-color: #291c4d;}
+	.groupMenuDetail{position: absolute;width: 100%;height: 27.5vw;overflow: hidden;background-color: #291c4d;}
+	.gameMenu{position: absolute;width: 100%;height: 25vw;background-color: #291c4d;text-align: center;overflow: auto;}
+	.gameListItem{position: absolute;width: 18vw;height: 25vw;font-size: 12pt;color: white;text-align: center;}
+	.gameScoreTitle{position: absolute;width: 100%;height: 13vw;line-height: 13vw;font-size: 12pt;color: white;text-align: center;background-color: #291c4d;}
+	[v-cloak] {
+		display:none !important;
+	}
+
+	.cardOver .back{box-shadow:1px 1px 5px #333;border-radius: 1px;background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/bull9/card.png");background-size:7.9vw 11vw; }
+	
+	.cardOver .cardA00{background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/sangong/joker2_1.png");background-size:7.9vw 11vw;}
+	.cardOver .cardB00{background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/sangong/joker1_1.png");background-size:7.9vw 11vw;}
+	.cardOver .cardA14{background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/sangong/joker2_1.png");background-size:7.9vw 11vw;}
+	.cardOver .cardB14{background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/sangong/joker1_1.png");background-size:7.9vw 11vw;}
+	.cardOver .card-1{background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/bull9/card.png");background-size:7.9vw 11vw;}
+	
+	.cardOver .cardA0{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bull12/11.png");background-size:7.9vw 11vw;}
+	.cardOver .cardB0{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bull12/22.png");background-size:7.9vw 11vw;}
+	.cardOver .cardC0{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bull12/33.png");background-size:7.9vw 11vw;}
+	.cardOver .cardD0{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bull12/44.png");background-size:7.9vw 11vw;}
+	.cardOver .cardE0{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bull12/55.png");background-size:7.9vw 11vw;}
+	.cardOver .cardF0{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bull12/66.png");background-size:7.9vw 11vw;}
+	.cardOver .cardG0{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bull12/77.png");background-size:7.9vw 11vw;}
+	.cardOver .cardH0{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bull12/88.png");background-size:7.9vw 11vw;}
+	
+	.cardOver .card{background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/bull9/card.png");background-size:7.9vw 11vw;}
+	.cardOver .cardundefined{background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/bull9/card.png");background-size:7.9vw 11vw;}
+
+
+    .cardOver .cardA1{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: 0 -33vw;background-size:102.7vw 44vw;}
+	.cardOver .cardA2{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -7.9vw -33vw;background-size:102.7vw 44vw;}
+	.cardOver .cardA3{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -15.8vw -33vw;background-size:102.7vw 44vw;}
+	.cardOver .cardA4{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -23.7vw -33vw;background-size:102.7vw 44vw;}
+	.cardOver .cardA5{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -31.6vw -33vw;background-size:102.7vw 44vw;}
+	.cardOver .cardA6{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -39.5vw -33vw;background-size:102.7vw 44vw;}
+	.cardOver .cardA7{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -47.4vw -33vw;background-size:102.7vw 44vw;}
+	.cardOver .cardA8{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -55.3vw -33vw;background-size:102.7vw 44vw;}
+	.cardOver .cardA9{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -63.2vw -33vw;background-size:102.7vw 44vw;}
+	.cardOver .cardA10{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -71.1vw -33vw;background-size:102.7vw 44vw;}
+	.cardOver .cardA11{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -79vw -33vw;background-size:102.7vw 44vw;}
+	.cardOver .cardA12{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -86.9vw -33vw;background-size:102.7vw 44vw;}
+	.cardOver .cardA13{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -94.8vw -33vw;background-size:102.7vw 44vw;}
+	
+	.cardOver .cardB1{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: 0 -22vw;background-size:102.7vw 44vw;}
+	.cardOver .cardB2{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -7.9vw -22vw;background-size:102.7vw 44vw;}
+	.cardOver .cardB3{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -15.8vw -22vw;background-size:102.7vw 44vw;}
+	.cardOver .cardB4{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -23.7vw -22vw;background-size:102.7vw 44vw;}
+	.cardOver .cardB5{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -31.6vw -22vw;background-size:102.7vw 44vw;}
+	.cardOver .cardB6{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -39.5vw -22vw;background-size:102.7vw 44vw;}
+	.cardOver .cardB7{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -47.4vw -22vw;background-size:102.7vw 44vw;}
+	.cardOver .cardB8{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -55.3vw -22vw;background-size:102.7vw 44vw;}
+	.cardOver .cardB9{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -63.2vw -22vw;background-size:102.7vw 44vw;}
+	.cardOver .cardB10{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -71.1vw -22vw;background-size:102.7vw 44vw;}
+	.cardOver .cardB11{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -79vw -22vw;background-size:102.7vw 44vw;}
+	.cardOver .cardB12{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -86.9vw -22vw;background-size:102.7vw 44vw;}
+	.cardOver .cardB13{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -94.8vw -22vw;background-size:102.7vw 44vw;}
+	
+	.cardOver .cardC1{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-size:102.7vw 44vw;}
+	.cardOver .cardC2{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -7.9vw 0;background-size:102.7vw 44vw;}
+	.cardOver .cardC3{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -15.8vw 0;background-size:102.7vw 44vw;}
+	.cardOver .cardC4{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -23.7vw 0;background-size:102.7vw 44vw;}
+	.cardOver .cardC5{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -31.6vw 0;background-size:102.7vw 44vw;}
+	.cardOver .cardC6{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -39.5vw 0;background-size:102.7vw 44vw;}
+	.cardOver .cardC7{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -47.4vw 0;background-size:102.7vw 44vw;}
+	.cardOver .cardC8{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -55.3vw 0;background-size:102.7vw 44vw;}
+	.cardOver .cardC9{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -63.2vw 0;background-size:102.7vw 44vw;}
+	.cardOver .cardC10{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -71.1vw 0;background-size:102.7vw 44vw;}
+	.cardOver .cardC11{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -79vw 0;background-size:102.7vw 44vw;}
+	.cardOver .cardC12{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -86.9vw 0;background-size:102.7vw 44vw;}
+	.cardOver .cardC13{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -94.8vw 0;background-size:102.7vw 44vw;}
+	
+	.cardOver .cardD1{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: 0 -11vw;background-size:102.7vw 44vw;}
+	.cardOver .cardD2{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -7.9vw -11vw;background-size:102.7vw 44vw;}
+	.cardOver .cardD3{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -15.8vw -11vw;background-size:102.7vw 44vw;}
+	.cardOver .cardD4{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -23.7vw -11vw;background-size:102.7vw 44vw;}
+	.cardOver .cardD5{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -31.6vw -11vw;background-size:102.7vw 44vw;}
+	.cardOver .cardD6{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -39.5vw -11vw;background-size:102.7vw 44vw;}
+	.cardOver .cardD7{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -47.4vw -11vw;background-size:102.7vw 44vw;}
+	.cardOver .cardD8{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -55.3vw -11vw;background-size:102.7vw 44vw;}
+	.cardOver .cardD9{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -63.2vw -11vw;background-size:102.7vw 44vw;}
+	.cardOver .cardD10{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -71.1vw -11vw;background-size:102.7vw 44vw;}
+	.cardOver .cardD11{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -79vw -11vw;background-size:102.7vw 44vw;}
+	.cardOver .cardD12{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -86.9vw -11vw;background-size:102.7vw 44vw;}
+	.cardOver .cardD13{background:url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/game/cards.jpg");background-position: -94.8vw -11vw;background-size:102.7vw 44vw;}
+	
+	
+		
+
+		
+	.cardOver .cardE1{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/E1.png");background-size:7.9vw 12vw;}
+	.cardOver .cardE2{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/E2.png");background-size:7.9vw 12vw;}
+	.cardOver .cardE3{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/E3.png");background-size:7.9vw 12vw;}
+	.cardOver .cardE4{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/E4.png");background-size:7.9vw 12vw;}
+	.cardOver .cardE5{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/E5.png");background-size:7.9vw 12vw;}
+	.cardOver .cardE6{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/E6.png");background-size:7.9vw 12vw;}
+	.cardOver .cardE7{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/E7.png");background-size:7.9vw 12vw;}
+	.cardOver .cardE8{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/E8.png");background-size:7.9vw 12vw;}
+	.cardOver .cardE9{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/E9.png");background-size:7.9vw 12vw;}
+	.cardOver .cardE10{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/E10.png");background-size:7.9vw 12vw;}
+	.cardOver .cardE11{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/E11.png");background-size:7.9vw 12vw;}
+	.cardOver .cardE12{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/E12.png");background-size:7.9vw 12vw;}
+	.cardOver .cardE13{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/E13.png");background-size:7.9vw 12vw;}	
+	
+		
+	.cardOver .cardF1{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/F1.png");background-size:7.9vw 12vw;}
+	.cardOver .cardF2{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/F2.png");background-size:7.9vw 12vw;}
+	.cardOver .cardF3{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/F3.png");background-size:7.9vw 12vw;}
+	.cardOver .cardF4{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/F4.png");background-size:7.9vw 12vw;}
+	.cardOver .cardF5{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/F5.png");background-size:7.9vw 12vw;}
+	.cardOver .cardF6{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/F6.png");background-size:7.9vw 12vw;}
+	.cardOver .cardF7{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/F7.png");background-size:7.9vw 12vw;}
+	.cardOver .cardF8{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/F8.png");background-size:7.9vw 12vw;}
+	.cardOver .cardF9{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/F9.png");background-size:7.9vw 12vw;}
+	.cardOver .cardF10{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/F10.png");background-size:7.9vw 12vw;}
+	.cardOver .cardF11{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/F11.png");background-size:7.9vw 12vw;}
+	.cardOver .cardF12{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/F12.png");background-size:7.9vw 12vw;}
+	.cardOver .cardF13{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/F13.png");background-size:7.9vw 12vw;}	
+	
+	.cardOver .cardG1{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/G1.png");background-size:7.9vw 12vw;}
+	.cardOver .cardG2{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/G2.png");background-size:7.9vw 12vw;}
+	.cardOver .cardG3{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/G3.png");background-size:7.9vw 12vw;}
+	.cardOver .cardG4{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/G4.png");background-size:7.9vw 12vw;}
+	.cardOver .cardG5{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/G5.png");background-size:7.9vw 12vw;}
+	.cardOver .cardG6{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/G6.png");background-size:7.9vw 12vw;}
+	.cardOver .cardG7{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/G7.png");background-size:7.9vw 12vw;}
+	.cardOver .cardG8{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/G8.png");background-size:7.9vw 12vw;}
+	.cardOver .cardG9{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/G9.png");background-size:7.9vw 12vw;}
+	.cardOver .cardG10{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/G10.png");background-size:7.9vw 12vw;}
+	.cardOver .cardG11{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/G11.png");background-size:7.9vw 12vw;}
+	.cardOver .cardG12{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/G12.png");background-size:7.9vw 12vw;}
+	.cardOver .cardG13{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/G13.png");background-size:7.9vw 12vw;}
+	
+	
+	.cardOver .cardI5{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/I5.png");background-size:7.9vw 12vw;}	
+	.cardOver .cardI6{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/I6.png");background-size:7.9vw 12vw;}
+	.cardOver .cardI7{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/I7.png");background-size:7.9vw 12vw;}
+	.cardOver .cardI8{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/I8.png");background-size:7.9vw 12vw;}
+	.cardOver .cardI9{background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/sangong/joker2_1.png");background-size:7.9vw 12vw;}
+	.cardOver .cardJ5{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/J5.png");background-size:7.9vw 12vw;}
+	.cardOver .cardJ6{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/J6.png");background-size:7.9vw 12vw;}
+	.cardOver .cardJ7{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/J7.png");background-size:7.9vw 12vw;}
+	.cardOver .cardJ8{background: url("http://180.188.22.245:10001/ttshenshou/files/images/cardextra/J8.png");background-size:7.9vw 12vw;}
+	.cardOver .cardJ9{background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/sangong/joker1_1.png");background-size:7.9vw 12vw;}
+	
+
+	.cardOver1 .cardA0{background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/sangong/joker2_1.png");background-size:7.9vw 11vw;}
+	.cardOver1 .cardB0{background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/sangong/joker1_1.png");background-size:7.9vw 11vw;}
+	.cardOver1 .cardA00{background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/sangong/joker2_1.png");background-size:7.9vw 11vw;}
+	.cardOver1 .cardB00{background: url("http://180.188.22.245:10001/ttshenshou/files/d_10/images/sangong/joker1_1.png");background-size:7.9vw 11vw;}
+	
+	.cardOverLai .cardE1{background: url("http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/E1.png");background-size:7.9vw 12vw;}
+	.cardOverLai .cardE2{background: url("http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/E2.png");background-size:7.9vw 12vw;}
+	.cardOverLai .cardE3{background: url("http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/E3.png");background-size:7.9vw 12vw;}
+	.cardOverLai .cardE4{background: url("http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/E4.png");background-size:7.9vw 12vw;}
+	.cardOverLai .cardE5{background: url("http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/E5.png");background-size:7.9vw 12vw;}
+	.cardOverLai .cardE6{background: url("http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/E6.png");background-size:7.9vw 12vw;}
+	.cardOverLai .cardE7{background: url("http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/E7.png");background-size:7.9vw 12vw;}
+	.cardOverLai .cardE8{background: url("http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/E8.png");background-size:7.9vw 12vw;}
+	.cardOverLai .cardE9{background: url("http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/E9.png");background-size:7.9vw 12vw;}
+	.cardOverLai .cardE10{background: url("http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/E10.png");background-size:7.9vw 12vw;}
+	.cardOverLai .cardE11{background: url("http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/E11.png");background-size:7.9vw 12vw;}
+	.cardOverLai .cardE12{background: url("http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/E12.png");background-size:7.9vw 12vw;}
+	.cardOverLai .cardE13{background: url("http://180.188.22.245:10001/ttshenshou/files/images/gameMaodou/E13.png");background-size:7.9vw 12vw;}
+
+	
+	
+	
+.cardOverPaijiu .card7121{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/12.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card7122{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/12.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card7123{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/12.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card7124{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/12.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card7125{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/12.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card6021{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/2.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card6022{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/2.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card6023{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/2.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card6024{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/2.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card6025{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/2.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card5081{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/8.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card5082{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/8.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card5083{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/8.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card5084{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/8.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card5085{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/8.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card4041{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/41.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card4042{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/41.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card4043{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/41.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card4044{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/41.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card4045{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/41.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card3101{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/101.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card3102{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/101.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card3103{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/101.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card3104{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/101.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card3105{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/101.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card3061{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/62.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card3062{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/62.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card3063{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/62.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card3064{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/62.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card3065{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/62.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card3041{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/4.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card3042{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/4.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card3043{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/4.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card3044{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/4.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card3045{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/4.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card2111{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/11.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2112{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/11.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2113{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/11.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2114{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/11.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2115{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/11.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card2101{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/10.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2102{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/10.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2103{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/10.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2104{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/10.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2105{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/10.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card2071{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/7.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2072{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/7.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2073{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/7.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2074{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/7.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2075{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/7.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card2061{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/6.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2062{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/6.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2063{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/6.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2064{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/6.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card2065{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/6.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card1091{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/9.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card1092{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/91.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card1081{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/81.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card1082{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/82.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card1071{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/71.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card1072{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/72.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card1051{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/51.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card1052{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/5.png");background-size:5.28vw 11vw;}
+
+.cardOverPaijiu .card1061{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/61.png");background-size:5.28vw 11vw;}
+.cardOverPaijiu .card1031{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/paijiu/3.png");background-size:5.28vw 11vw;}
+
+.cardOverDice .cardundefined{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bulldice/point0_1.png");background-size:7.9vw 7.9vw;}
+.cardOverDice .card-1{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bulldice/point0_1.png");background-size:7.9vw 7.9vw;}
+.cardOverDice .cardA1{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bulldice/point1_2.png");background-size:7.9vw 7.9vw;}
+.cardOverDice .cardA2{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bulldice/point2_2.png");background-size:7.9vw 7.9vw;}
+.cardOverDice .cardA3{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bulldice/point3_2.png");background-size:7.9vw 7.9vw;}
+.cardOverDice .cardA4{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bulldice/point4_2.png");background-size:7.9vw 7.9vw;}
+.cardOverDice .cardA5{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bulldice/point5_2.png");background-size:7.9vw 7.9vw;}
+.cardOverDice .cardA6{background: url("http://180.188.22.245:10001/ttshenshou/files/d_30/images/bulldice/point6_2.png");background-size:7.9vw 7.9vw;}
+</style>
+
+</head>
+
+<body style="background-color: #0e0226">
+
+	<div id="loading" style="position: fixed;width:100%;height:100%;top:0;left:0;background: #000" >
+		<img src="http://180.188.22.245:10001/ttshenshou/files/images/loading.gif" style="top: 40%;position: absolute;left: 50%;margin-left: -45px;margin-top: -45px;" />
+	</div>
+
+	<div class="main" id="app-main" style="position: relative; width: 100%;margin: 0 auto; background: #0e0226;" v-cloak>
+
+		<div class="alert" id="valert" v-show="isShowAlert">
+			<div class="alertBack"></div>
+			<div class="mainPart">
+				<div class="backImg">
+					<div class="blackImg"></div>
+				</div>
+				<div class="alertText">{{alertText}}</div>				
+				<div v-show="alertType==3">
+					<div class="buttonLeft" v-on:click="closeAlert">确定</div>
+					<div class="buttonRight" v-on:click="closeAlert">取消</div>
+				</div>			
+				<div v-show="alertType==7">
+					<div class="buttonMiddle" v-on:click="closeAlert">确定</div>
+				</div>	
+				<div v-show="alertType==8">
+				</div>
+				<div v-show="alertType==23">
+					<div class="buttonMiddle" v-on:click="finishBindPhone()">确定</div>
+				</div>				
+			</div>
+		</div>
+
+
+		<div class="gameMenu" style="top: 4vw;height: 15vw;line-height: 15vw;text-align: center;font-size: 12pt;color: white;">
+			{{ruleStartTime}}&nbsp&nbsp&nbsp至&nbsp&nbsp&nbsp{{ruleEndTime}}
+		</div>
+
+		<div class="gameScoreTitle" style="top: 22vw;height: 26vw;line-height: 6vw;text-align: center;font-size: 12pt;color:orange;">
+		    <div style="position: absolute;top: 2vw;left: 5vw;width: 90vw;">
+		    	{{ruleText}}
+		    </div>
+		</div>
+		
+		<div style="width: 100%;height: 12vw;line-height: 12vw;text-align: center;font-size: 12pt;background:#999;color: white;position: absolute;top:50vw;" v-if="gameType==6" >
+				生成积分榜
+		</div>		
+		<div style="width: 100%;height: 12vw;line-height: 12vw;text-align: center;font-size: 12pt;background:orange;color: white;position: absolute;top:50vw;" v-if="gameType!=6" v-on:click="createboard()">
+				生成积分榜
+		</div>
+		
+		<div id="memberDiv" v-bind:style="'position: absolute;top: ' + (0.66 * width) + ';left: 0;width: 100%;'" >
+			<div style="position: relative;">
+				<div v-for="(item, index) in gameScoreList" style="position: relative;width: 100%;height: 20vw;line-height: 20vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;" v-show="!isRemark">
+					<img v-bind:src="item.avatar" style="position: absolute;top: 3vw;left: 3vw;width: 14vw;height: 14vw;">
+					<div style="position: absolute;top: 3vw;left: 20vw;height: 7vw;line-height: 7vw;font-size: 12pt;color: white;text-align: left;">
+						{{item.name}}
+					</div>
+					<div style="position: absolute;top: 10vw;left: 20vw;height: 7vw;line-height: 7vw;font-size: 12pt;color: #39d7ff;text-align: center;">
+						ID:&nbsp{{item.code}}
+					</div>
+					<div style="position: absolute;right: 5vw;font-size: 12pt;color: white;text-align: right;">
+						{{item.score}}
+					</div>
+				</div>
+
+				<div v-for="(item, index) in gameScoreList" style="position: relative;width: 100%;height: 20vw;line-height: 20vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;" v-show="isRemark">
+					<img v-bind:src="item.avatar" style="position: absolute;top: 3vw;left: 3vw;width: 14vw;height: 14vw;">
+					<div style="position: absolute;top: 2vw;left: 20vw;height: 7vw;line-height: 7vw;font-size: 4vw;color: white;text-align: left;">
+						{{item.remark}}
+					</div>
+					<div style="position: absolute;bottom:5.5vw;left: 20vw;height: 7vw;line-height: 7vw;font-size: 3vw;color: lightgray;text-align: center;">
+						昵称:&nbsp{{item.name}}
+					</div>
+					<div style="position: absolute;bottom:1vw;left: 20vw;height: 7vw;line-height: 7vw;font-size: 3vw;color: #39d7ff;text-align: center;">
+						ID:&nbsp{{item.code}}
+					</div>
+					<div style="position: absolute;right: 5vw;font-size: 12pt;color: white;text-align: right;">
+						{{item.score}}
+					</div>
+				</div>
+<!--牛牛类-->
+				<div v-for="(item, index) in gameDetailList" v-bind:style="'position: relative;width: 100%;height: ' + item.dheight + 'px;line-height: ' + item.dHeight + 'px;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;background-color: #0e0226'" v-if="gameType==5||gameType==9||gameType==12||gameType==13||gameType==14||gameType==15||gameType==20||gameType==1024||gameType==1025||gameType==1026||gameType==24||gameType==31||gameType==33||gameType==34||gameType==45||gameType==47||gameType==1033||gameType==1034||gameType==2001||gameType==2002||gameType==2003||gameType==2012||gameType==2013||gameType==2021||gameType==2022||(banker_mode!=6&&(gameType==1001||gameType==1002||gameType==1003||gameType==1035||gameType==1036||gameType==1011||gameType==1012||gameType==1013||gameType==1037||gameType==1038||gameType==1027||gameType==1028||gameType==1029||gameType==1014||gameType==1015||gameType==1016))">
+					<div style="position: relative;width: 100%;height: 15vw;">
+						<div style="position: absolute;left: 3vw;bottom: 2vw;font-size: 2.7vh;">
+							{{item.gnum}}/{{item.tnum}}局
+						</div>
+					</div>
+					<div style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d">
+						<div style="position: absolute;left: 9vw;width: 30vw;color: orange;text-align: left;overflow: hidden;">
+							用户名字
+						</div>
+						<div style="position: absolute;width: 100%;text-align:center;color: orange;overflow: hidden;">
+							牌型
+						</div>
+						<div style="position: absolute;right: 20vw;color: orange;overflow: hidden;" v-if="gameType!=20&&gameType!=31">
+							倍数
+						</div>
+						<div style="position: absolute;right: 20vw;color: orange;overflow: hidden;" v-if="gameType==20">
+							分数
+						</div>
+						<div style="position: absolute;right: 20vw;color: orange;overflow: hidden;" v-if="gameType==31">
+							下注
+						</div>
+						<div style="position: absolute;right: 5vw;color: orange;overflow: hidden;">
+							得分
+						</div>
+					</div>
+
+					<div v-for="(user, index) in item.detail" style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;" >
+
+						<div style="position: absolute;left: 4vw;width: 28vw;color: #39d7ff;text-align: left;font-size: 2.3vh;overflow: hidden;">
+							<div style="margin-left: 5.5vw">{{user.name}}</div>
+							<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="position: absolute;top: 5vw;height: 5vw;width: 5vw;" v-show="user.is_banker==1">
+
+							<!-- <span>{{user.name}}</span>
+							<span >
+								<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="height: 5vw;width: 5vw;" v-show="user.is_banker==1">
+							</span> -->
+						</div>
+						<div class="cardOver" style="position: absolute;left: 32vw;width: 39vw;height: 15vw;color: white;font-size: 2.3vh;z-index: 9000" v-if="gameType!=24&&gameType!=33&&gameType!=34&&gameType!=2041&&gameType!=2042">
+
+							<div style="position: absolute;left: -2vw;height: 15vw;font-size: 2.3vh;color: white;z-index: 90009" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:1.5vw;left: 10vw;width: 7.9vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:1.5vw;left: 14vw;width: 7.9vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:1.5vw;left: 18vw;width: 7.9vw;height: 11vw;z-index: 9002;" v-show="user.is_join==1" v-if="user.cards.length>2">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[3]" style="position: absolute;top:1.5vw;left:22vw;width: 7.9vw;height: 11vw;z-index: 9003;" v-show="(gameType==5||gameType==9||gameType==14||gameType==15||gameType==20||gameType==1024||gameType==1025||gameType==1026||gameType==47||gameType==1001||gameType==1002||gameType==1003||gameType==1035||gameType==1036||gameType==1011||gameType==1012||gameType==1013||gameType==1037||gameType==1038||gameType==2001||gameType==2002||gameType==2003||gameType==2012||gameType==2013) && user.is_join==1"  v-if="user.cards.length>3">
+
+							</div>
+							<div  class="back" v-bind:class="'card' + user.cards[4]" style="position: absolute;top:1.5vw;left: 26vw;width: 7.9vw;height: 11vw;z-index: 9004;" v-show="(gameType==5||gameType==9||gameType==14||gameType==15||gameType==20||gameType==1024||gameType==1025||gameType==1026||gameType==47||gameType==1001||gameType==1002||gameType==1003||gameType==1035||gameType==1036||gameType==1011||gameType==1012||gameType==1013||gameType==1037||gameType==1038||gameType==2001||gameType==2002||gameType==2003||gameType==2012||gameType==2013) && user.is_join==1"  v-if="user.cards.length>4">
+							</div>
+						</div>
+<!--色子牛牛-->
+						<div class="cardOverDice" style="position: absolute;left: 32vw;width: 39vw;height: 15vw;color: white;font-size: 2.3vh;z-index: 9000" v-if="gameType==33">
+
+							<div style="position: absolute;left: -2vw;height: 15vw;font-size: 2.3vh;color: white;z-index: 90009" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:4.5vw;left: 8vw;width: 7.9vw;height: 7.9vw;z-index: 9000;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:4.5vw;left: 13vw;width: 7.9vw;height: 7.9vw;z-index: 9001;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:4.5vw;left: 18vw;width: 7.9vw;height: 7.9vw;z-index: 9002;" v-show="user.is_join==1" v-if="user.cards.length>2">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[3]" style="position: absolute;top:4.5vw;left:23vw;width: 7.9vw;height: 7.9vw;z-index: 9003;" v-show="user.is_join==1"  v-if="user.cards.length>3">
+
+							</div>
+							<div  class="back" v-bind:class="'card' + user.cards[4]" style="position: absolute;top:4.5vw;left: 28vw;width: 7.9vw;height: 7.9vw;z-index: 9004;" v-show="user.is_join==1"  v-if="user.cards.length>4">
+							</div>
+						</div>
+<!--超级色子-->
+						<div class="cardOverDice" style="position: absolute;left: 32vw;width: 39vw;height: 15vw;color: white;font-size: 2.3vh;z-index: 9000" v-if="gameType==34">
+
+							<div style="position: absolute;left: -2vw;height: 15vw;font-size: 2.3vh;color: white;z-index: 90009" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+
+							<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:4.5vw;left: 10vw;width: 7.9vw;height: 7.9vw;z-index: 9000;" v-show="user.is_join==1">
+							</div>
+
+							<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:4.5vw;left: 16vw;width: 7.9vw;height: 7.9vw;z-index: 9001;" v-show="user.is_join==1">
+							</div>
+
+							<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:4.5vw;left: 22vw;width: 7.9vw;height: 7.9vw;z-index: 9002;" v-show="user.is_join==1" v-if="user.cards.length>2">
+							</div>
+						</div>		
+						
+<!--癞子牛牛-->									
+						<div class="cardOver cardOver1" style="position: absolute;left: 32vw;width: 39vw;height: 15vw;color: white;font-size: 2.3vh;z-index: 9000"  v-if="gameType==24||gameType==2021||gameType==2022">
+
+							<div style="position: absolute;left: -2vw;height: 15vw;font-size: 2.3vh;color: white;z-index: 90009" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:1.5vw;left: 10vw;width: 7.9vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:1.5vw;left: 14vw;width: 7.9vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:1.5vw;left: 18vw;width: 7.9vw;height: 11vw;z-index: 9002;" v-show="user.is_join==1" v-if="user.cards.length>2">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[3]" style="position: absolute;top:1.5vw;left:22vw;width: 7.9vw;height: 11vw;z-index: 9003;" v-show="user.is_join==1"  v-if="user.cards.length>3">
+
+							</div>
+							<div  class="back" v-bind:class="'card' + user.cards[4]" style="position: absolute;top:1.5vw;left: 26vw;width: 7.9vw;height: 11vw;z-index: 9004;" v-show="user.is_join==1"  v-if="user.cards.length>4">
+							</div>
+						</div>
+						
+						<div style="position: absolute;right: 20vw;color: white;overflow: hidden;font-size: 2.3vh;" v-show="user.is_join==1">
+							{{user.chip}}
+						</div>
+						<div style="position: absolute;right: 5vw;color: white;overflow: hidden;font-size: 2.3vh;" v-show="user.is_join==1">
+							{{user.score}}
+						</div>
+						<div style="position: absolute;left: 36vw;width: 60vw;height: 15vw;line-height: 15vw;font-size: 2.3vh;" v-show="user.is_join==0">
+							该局未参与游戏
+						</div>
+					</div>
+				</div>
+<!--大吃小-->				
+				<div v-for="(item, index) in gameDetailList" v-bind:style="'position: relative;width: 100%;height: ' + item.dheight + 'px;line-height: ' + item.dHeight + 'px;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;background-color: #0e0226'" v-if="gameType==21||(banker_mode==6&&(gameType==1001||gameType==1002||gameType==1003||gameType==1035||gameType==1036||gameType==1011||gameType==1012||gameType==1013||gameType==1037||gameType==1038||gameType==1014||gameType==1015||gameType==1016||gameType==1027||gameType==1028||gameType==1029))">
+					<div style="position: relative;width: 100%;height: 15vw;">
+						<div style="position: absolute;left: 3vw;bottom: 2vw;font-size: 2.7vh;">
+							{{item.gnum}}/{{item.tnum}}局
+						</div>
+					</div>
+					<div style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d">
+						<div style="position: absolute;left: 9vw;width: 30vw;color: orange;text-align: left;overflow: hidden;">
+							用户名字
+						</div>
+						<div style="position: absolute;width: 100%;text-align:center;color: orange;overflow: hidden;">
+							牌型
+						</div>
+						<div style="position: absolute;right: 20vw;color: orange;overflow: hidden;" >
+							下注
+						</div>
+						<div style="position: absolute;right: 5vw;color: orange;overflow: hidden;">
+							得分
+						</div>
+					</div>
+
+					<div v-for="(user, index) in item.detail" style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;">
+
+						<div style="position: absolute;left: 4vw;width: 28vw;color: #39d7ff;text-align: left;font-size: 2.3vh;overflow: hidden;">
+							<div style="margin-left: 5.5vw">{{user.name}}</div>
+							<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="position: absolute;top: 5vw;height: 5vw;width: 5vw;" v-show="user.is_banker==1">
+
+						</div>
+						<div class="cardOver" style="position: absolute;left: 32vw;width: 39vw;height: 15vw;color: white;font-size: 2.3vh;z-index: 9000">
+
+							<div style="position: absolute;left: -2vw;height: 15vw;font-size: 2.3vh;color: white;z-index: 90009" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:1.5vw;left: 10vw;width: 7.9vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:1.5vw;left: 14vw;width: 7.9vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:1.5vw;left: 18vw;width: 7.9vw;height: 11vw;z-index: 9002;" v-show="user.is_join==1" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[3]" style="position: absolute;top:1.5vw;left:22vw;width: 7.9vw;height: 11vw;z-index: 9003;" v-show=" user.is_join==1&&(gameType!=1014&&gameType!=1015&&gameType!=1016&&gameType!=1027&&gameType!=1028&&gameType!=1029)"  v-if="user.cards.length>3">
+
+							</div>
+							<div  class="back" v-bind:class="'card' + user.cards[4]" style="position: absolute;top:1.5vw;left: 26vw;width: 7.9vw;height: 11vw;z-index: 9004;" v-show=" user.is_join==1&&(gameType!=1014&&gameType!=1015&&gameType!=1016&&gameType!=1027&&gameType!=1028&&gameType!=1029)"  v-if="user.cards.length>4">
+							</div>
+						</div>
+						<div style="position: absolute;right: 20vw;color: white;overflow: hidden;font-size: 2.3vh;" v-show="user.is_join==1">
+							{{user.chip}}
+						</div>
+						<div style="position: absolute;right: 5vw;color: white;overflow: hidden;font-size: 2.3vh;" v-show="user.is_join==1">
+							{{user.score}}
+						</div>
+						<div style="position: absolute;left: 36vw;width: 60vw;height: 15vw;line-height: 15vw;font-size: 2.3vh;" v-show="user.is_join==0">
+							该局未参与游戏
+						</div>
+					</div>
+				</div>
+<!--麻将-->
+				<div v-for="(item, index) in gameDetailList" v-bind:style="'position: relative;width: 100%;height: ' + item.dheight + 'px;line-height: ' + item.dHeight + 'px;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;background-color: #0e0226'" v-if="gameType==44||gameType==40||gameType==50">
+					<div style="position: relative;width: 100%;height: 15vw;">
+						<div style="position: absolute;left: 3vw;bottom: 2vw;font-size: 2.7vh;">
+							{{item.gnum}}/{{item.tnum}}局
+						</div>
+						<div style="position: absolute;right: 3vw;height: 10vw;top: 50%;margin-top: -5vw;line-height: 10vw;width: 22vw;border-radius: 1vw;background-color: rgb(74,110,47);text-align: center;" v-on:click="clickReplay(index)">
+							查看回放
+						</div>
+					</div>
+					<div style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d">
+						<div style="position: absolute;left: 9vw;width: 30vw;color: orange;text-align: left;overflow: hidden;">
+							用户名字
+						</div>
+						<div style="position: absolute;width: 100%;text-align:center;color: orange;overflow: hidden;">
+							
+						</div>
+						
+						<div style="position: absolute;right: 5vw;color: orange;overflow: hidden;">
+							得分
+						</div>
+					</div>
+
+					<div v-for="(user, index) in item.detail" style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;">
+
+						<div style="position: absolute;left: 4vw;width: 28vw;color: #39d7ff;text-align: left;font-size: 2.3vh;overflow: hidden;">
+							<div style="margin-left: 5.5vw">{{user.name}}</div>
+							<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="position: absolute;top: 5vw;height: 5vw;width: 5vw;" v-show="user.is_banker==1">
+						</div>
+						<div class="cardOver" style="position: absolute;left: 32vw;width: 39vw;height: 15vw;color: white;font-size: 2.3vh;z-index: 9000">
+
+							<!-- <div style="position: absolute;left: -2vw;height: 15vw;font-size: 2.3vh;color: white;z-index: 90009" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:1.5vw;left: 10vw;width: 7.9vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:1.5vw;left: 14vw;width: 7.9vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:1.5vw;left: 18vw;width: 7.9vw;height: 11vw;z-index: 9002;" v-show="user.is_join==1" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[3]" style="position: absolute;top:1.5vw;left:22vw;width: 7.9vw;height: 11vw;z-index: 9003;" v-show=" user.is_join==1" >
+
+							</div>
+							<div  class="back" v-bind:class="'card' + user.cards[4]" style="position: absolute;top:1.5vw;left: 26vw;width: 7.9vw;height: 11vw;z-index: 9004;" v-show=" user.is_join==1">
+							</div> -->
+						</div>
+						<div style="position: absolute;right: 20vw;color: white;overflow: hidden;font-size: 2.3vh;" v-show="user.is_join==1">
+							
+						</div>
+						<div style="position: absolute;right: 5vw;color: white;overflow: hidden;font-size: 2.3vh;" v-show="user.is_join==1">
+							{{user.score}}
+						</div>
+						<div style="position: absolute;left: 36vw;width: 60vw;height: 15vw;line-height: 15vw;font-size: 2.3vh;" v-show="user.is_join==0">
+							该局未参与游戏
+						</div>
+					</div>
+				</div>
+<!--吉祥三公 -->				
+				<div v-for="(item, index) in gameDetailList" v-bind:style="'position: relative;width: 100%;height: ' + item.dheight + 'px;line-height: ' + item.dHeight + 'px;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;background-color: #0e0226'" v-if="gameType==17||gameType==1021||gameType==1022||gameType==1023">
+					<div style="position: relative;width: 100%;height: 15vw;">
+						<div style="position: absolute;left: 3vw;bottom: 2vw;font-size: 2.7vh;">
+							{{item.gnum}}/{{item.tnum}}局
+						</div>
+					</div>
+					<div style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d">
+						<div style="position: absolute;left: 9vw;width: 30vw;color: orange;text-align: left;overflow: hidden;">
+							用户名字
+						</div>
+						<div style="position: absolute;width: 100%;text-align:center;color: orange;overflow: hidden;">
+							牌型
+						</div>
+						<div style="position: absolute;right: 20vw;color: orange;overflow: hidden;">
+							倍数
+						</div>
+						<div style="position: absolute;right: 5vw;color: orange;overflow: hidden;">
+							得分
+						</div>
+					</div>
+
+					<div v-for="(user, index) in item.detail" style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;">
+
+						<div style="position: absolute;left: 4vw;width: 28vw;color: #39d7ff;text-align: left;font-size: 2.3vh;overflow: hidden;">
+							<div style="margin-left: 5.5vw">{{user.name}}</div>
+							<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="position: absolute;top: 5vw;height: 5vw;width: 5vw;" v-show="user.is_banker==1">
+
+
+						</div>
+						<div class="cardOver" style="position: absolute;left: 32vw;width: 39vw;height: 15vw;color: white;font-size: 2.3vh;z-index: 9000">
+
+							<div style="position: absolute;left: -2vw;height: 15vw;font-size: 2.3vh;color: white;z-index: 90009" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:1.5vw;left: 18vw;width: 7.9vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:1.5vw;left: 22vw;width: 7.9vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:1.5vw;left: 26vw;width: 7.9vw;height: 11vw;z-index: 9002;" v-show="user.is_join==1">
+
+							</div>
+						</div>
+						<div style="position: absolute;right: 20vw;color: white;overflow: hidden;font-size: 2.3vh;" v-show="user.is_join==1">
+							{{user.chip}}
+						</div>
+						<div style="position: absolute;right: 5vw;color: white;overflow: hidden;font-size: 2.3vh;" v-show="user.is_join==1">
+							{{user.score}}
+						</div>
+						<div style="position: absolute;left: 36vw;width: 60vw;height: 15vw;line-height: 15vw;font-size: 2.3vh;" v-show="user.is_join==0">
+							该局未参与游戏
+						</div>
+					</div>
+				</div>
+
+<!--三加一 -->	
+				<div v-for="(item, index) in gameDetailList" v-bind:style="'position: relative;width: 100%;height: ' + item.dheight + 'px;line-height: ' + item.dHeight + 'px;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;background-color: #0e0226'" v-if="gameType==25||gameType==39||gameType==48||gameType==1018||gameType==1019||gameType==1020||gameType==2071||gameType==2072||gameType==2073">
+					<div style="position: relative;width: 100%;height: 15vw;">
+						<div style="position: absolute;left: 3vw;bottom: 2vw;font-size: 2.7vh;">
+							{{item.gnum}}/{{item.tnum}}局
+						</div>
+					</div>
+					<div style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d">
+						<div style="position: absolute;left: 9vw;width: 30vw;color: orange;text-align: left;overflow: hidden;">
+							用户名字
+						</div>
+						<div style="position: absolute;width: 100%;text-align:center;color: orange;overflow: hidden;">
+							牌型
+						</div>
+						<div style="position: absolute;right: 20vw;color: orange;overflow: hidden;">
+							倍数
+						</div>
+						<div style="position: absolute;right: 5vw;color: orange;overflow: hidden;">
+							得分
+						</div>
+					</div>
+
+					<div v-for="(user, index) in item.detail" style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;">
+
+						<div style="position: absolute;left: 4vw;width: 24vw;color: #39d7ff;text-align: left;font-size: 2vh;overflow: hidden;">
+							<div style="margin-left: 5.5vw">{{user.name}}</div>
+							<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="position: absolute;top: 5vw;height: 5vw;width: 5vw;" v-show="user.is_banker==1">
+
+
+						</div>
+						<div class="cardOver" style="position: absolute;left: 29vw;width: 42vw;height: 15vw;color: white;font-size: 2vh;z-index: 9000" v-if="gameType==25||gameType==48||gameType==1018||gameType==1019||gameType==1020">
+
+							<div style="position: absolute;left: -2vw;height: 15vw;font-size: 2vh;color: white;z-index: 90009" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:1.5vw;left: 18vw;width: 7.9vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1">
+								<div style="position: absolute;top:0;left:0;width:100%;height:100%;background: #000;opacity: .5;" v-if="user.cards[0]==user.eliminate_card"></div>
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:1.5vw;left: 22vw;width: 7.9vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1">
+								<div style="position: absolute;top:0;left:0;width:100%;height:100%;background: #000;opacity: .5;" v-if="user.cards[1]==user.eliminate_card"></div>
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:1.5vw;left: 26vw;width: 7.9vw;height: 11vw;z-index: 9002;" v-show="user.is_join==1">
+								<div style="position: absolute;top:0;left:0;width:100%;height:100%;background: #000;opacity: .5;" v-if="user.cards[2]==user.eliminate_card"></div>
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[3]" style="position: absolute;top:1.5vw;left: 30vw;width: 7.9vw;height: 11vw;z-index: 9002;" v-show="user.is_join==1">
+								<div style="position: absolute;top:0;left:0;width:100%;height:100%;background: #000;opacity: .5;" v-if="user.cards[3]==user.eliminate_card"></div>
+							</div>
+						</div>
+						<div class="cardOver cardOver1" style="position: absolute;left: 29vw;width: 42vw;height: 15vw;color: white;font-size: 2vh;z-index: 9000" v-if="gameType==39">
+
+							<div style="position: absolute;left: -2vw;height: 15vw;font-size: 2vh;color: white;z-index: 90009" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:1.5vw;left: 18vw;width: 7.9vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1">
+								<div style="position: absolute;top:0;left:0;width:100%;height:100%;background: #000;opacity: .5;" v-if="0==user.eliminate_card_index"></div>
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:1.5vw;left: 22vw;width: 7.9vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1">
+								<div style="position: absolute;top:0;left:0;width:100%;height:100%;background: #000;opacity: .5;" v-if="1==user.eliminate_card_index"></div>
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:1.5vw;left: 26vw;width: 7.9vw;height: 11vw;z-index: 9002;" v-show="user.is_join==1">
+								<div style="position: absolute;top:0;left:0;width:100%;height:100%;background: #000;opacity: .5;" v-if="2==user.eliminate_card_index"></div>
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[3]" style="position: absolute;top:1.5vw;left: 30vw;width: 7.9vw;height: 11vw;z-index: 9002;" v-show="user.is_join==1">
+								<div style="position: absolute;top:0;left:0;width:100%;height:100%;background: #000;opacity: .5;" v-if="3==user.eliminate_card_index"></div>
+							</div>
+						</div>
+						<div style="position: absolute;right: 20vw;color: white;overflow: hidden;font-size: 2vh;" v-show="user.is_join==1">
+							{{user.chip}}
+						</div>
+						<div style="position: absolute;right: 5vw;color: white;overflow: hidden;font-size: 2vh;" v-show="user.is_join==1">
+							{{user.score}}
+						</div>
+						
+						
+						<div style="position: absolute;left: 36vw;width: 60vw;height: 15vw;line-height: 15vw;font-size: 2.3vh;" v-show="user.is_join==0">
+							该局未参与游戏
+						</div>
+					</div>
+				</div>
+<!--牌九-->	
+				<div v-for="(item, index) in gameDetailList" v-bind:style="'position: relative;width: 100%;height: ' + item.dheight + 'px;line-height: ' + item.dHeight + 'px;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;background-color: #0e0226'" v-if="gameType==19||gameType==1007||gameType==1008||gameType==1009||gameType==2051||gameType==2052||gameType==2053">
+					<div style="position: relative;width: 100%;height: 15vw;">
+						<div style="position: absolute;left: 3vw;bottom: 2vw;font-size: 2.7vh;">
+							{{item.gnum}}/{{item.tnum}}局
+						</div>
+					</div>
+					<div style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d">
+						<div style="position: absolute;left: 9vw;width: 30vw;color: orange;text-align: left;overflow: hidden;">
+							用户名字
+						</div>
+						<div style="position: absolute;right: 36vw;text-align:center;color: orange;overflow: hidden;">
+							牌型
+						</div>
+						<div style="position: absolute;right: 20vw;color: orange;overflow: hidden;" v-if="banker_mode!=6">
+							倍数
+						</div>
+						
+						<div style="position: absolute;right: 20vw;color: orange;overflow: hidden;" v-if="banker_mode==6">
+							下注
+						</div>
+						<div style="position: absolute;right: 5vw;color: orange;overflow: hidden;">
+							得分
+						</div>
+					</div>
+					
+
+					
+
+					<div v-for="(user, index) in item.detail" style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;">
+
+						<div style="position: absolute;left: 4vw;width: 28vw;color: #39d7ff;text-align: left;font-size: 2.3vh;overflow: hidden;">
+							<div style="margin-left: 5.5vw">{{user.name}}</div>
+							<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="position: absolute;top: 5vw;height: 5vw;width: 5vw;" v-show="user.is_banker==1">
+
+
+						</div>
+						<div class="cardOverPaijiu" style="position: absolute;left: 32vw;width: 39vw;height: 15vw;color: white;font-size: 2.3vh;z-index: 9000">
+
+							<div style="position: absolute;left: -2vw;height: 15vw;font-size: 2.3vh;color: white;z-index: 90009" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:1.5vw;left: 17vw;width: 5.28vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:1.5vw;left: 24vw;width: 5.28vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1">
+
+							</div>
+						</div>
+						<div style="position: absolute;right: 20vw;color: white;overflow: hidden;font-size: 2.3vh;" v-show="user.is_join==1">
+							{{user.chip}}
+						</div>
+						<div style="position: absolute;right: 5vw;color: white;overflow: hidden;font-size: 2.3vh;" v-show="user.is_join==1">
+							{{user.score}}
+						</div>
+						<div style="position: absolute;left: 36vw;width: 60vw;height: 15vw;line-height: 15vw;font-size: 2.3vh;" v-show="user.is_join==0">
+							该局未参与游戏
+						</div>
+					</div>
+				</div>
+<!--至尊牛-->	
+				<div v-for="(item, index) in gameDetailList" v-bind:style="'position: relative;width: 100%;height: ' + item.dheight + 'px;line-height: ' + item.dHeight + 'px;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;background-color: #0e0226'" v-if="gameType==1030||gameType==1031||gameType==1032">
+					<div style="position: relative;width: 100%;height: 15vw;">
+						<div style="position: absolute;left: 3vw;bottom: 2vw;font-size: 2.7vh;">
+							{{item.gnum}}/{{item.tnum}}局
+						</div>
+					</div>
+					<div style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d">
+						<div style="position: absolute;left: 7vw;width: 30vw;color: orange;text-align: left;overflow: hidden;">
+							用户名字
+						</div>
+						<div style="position: absolute;left: 50vw;text-align:center;color: orange;overflow: hidden;">
+							牌型
+						</div>
+						<div style="position: absolute;right: 20vw;color: orange;overflow: hidden;">
+							倍数
+						</div>
+						
+						<div style="position: absolute;right: 5vw;color: orange;overflow: hidden;">
+							得分
+						</div>
+					</div>
+
+					<div v-for="(user, index) in item.detail" style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;">
+
+						<div style="position: absolute;left: 0;width: 26vw;color: #39d7ff;text-align: left;font-size: 2.3vh;overflow: hidden;">
+							<div style="margin-left: 5.5vw">{{user.name}}</div>
+							<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="position: absolute;top: 5vw;height: 5vw;width: 5vw;" v-show="user.is_banker==1">
+
+
+						</div>
+						<div class="cardOverPaijiu" style="position: absolute;left: 31vw;width: 39vw;height: 15vw;color: white;font-size: 2.3vh;z-index: 9000">
+
+							<div style="position: absolute;left: -4vw;height: 15vw;font-size: 2.3vh;color: white;z-index: 90009" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:1.5vw;left: 7vw;width: 5.28vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1"></div>
+							<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:1.5vw;left: 12.5vw;width: 5.28vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1"></div>
+							<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:1.5vw;left: 18vw;width: 5.28vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1"></div>
+							<div class="back" v-bind:class="'card' + user.cards[3]" style="position: absolute;top:1.5vw;left: 23.5vw;width: 5.28vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1"></div>
+							<div class="back" v-bind:class="'card' + user.cards[4]" style="position: absolute;top:1.5vw;left: 29vw;width: 5.28vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1"></div>
+						</div>
+						<div style="position: absolute;right: 20vw;color: white;overflow: hidden;font-size: 2.3vh;" v-show="user.is_join==1">
+							{{user.chip}}
+						</div>
+						<div style="position: absolute;right: 5vw;color: white;overflow: hidden;font-size: 2.3vh;" v-show="user.is_join==1">
+							{{user.score}}
+						</div>
+						<div style="position: absolute;left: 36vw;width: 60vw;height: 15vw;line-height: 15vw;font-size: 2.3vh;" v-show="user.is_join==0">
+							该局未参与游戏
+						</div>
+					</div>
+				</div>
+
+<!--炸金花-->
+				<div v-for="(item, index) in gameDetailList" v-bind:style="'position: relative;width: 100%;height: ' + item.dheight + 'px;line-height: ' + item.dHeight + 'px;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;background-color: #0e0226'" v-if="gameType==1||gameType==16||gameType==28||gameType==29||gameType==26||gameType==42||gameType==1004||gameType==1005||gameType==1006||gameType==1039||gameType==1040||gameType==2031||gameType==2032||gameType==2033||gameType==2041||gameType==2042||gameType==2043||gameType==2061||gameType==2062||gameType==2063||gameType==3051||gameType==3052">
+					<div style="position: relative;width: 100%;height: 15vw;">
+						<div style="position: absolute;left: 3vw;bottom: 2vw;font-size: 2.7vh;">
+							{{item.gnum}}/{{item.tnum}}局
+						</div>
+					</div>
+					<div style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d">
+						<div style="position: absolute;left: 4vw;width: 30vw;color: orange;text-align: left;overflow: hidden;">
+							用户名字
+						</div>
+						<div style="position: absolute;width: 100%;text-align:center;color: orange;overflow: hidden;">
+							牌型
+						</div>
+						<div style="position: absolute;right: 5vw;color: orange;overflow: hidden;">
+							分数
+						</div>
+					</div>
+
+					<div v-for="(user, index) in item.detail" style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;">
+
+						<div style="position: absolute;left: 4vw;width: 28vw;color: #39d7ff;text-align: left;font-size: 2.3vh;overflow: hidden;" v-if="gameType!=3051&&gameType!=3052">
+							<span>{{user.name}}</span>
+							<span >
+								<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="height: 5vw;width: 5vw;" v-show="user.is_banker==1">
+							</span>
+						</div>
+						
+						<div style="position: absolute;left: 4vw;width: 25vw;color: #39d7ff;text-align: left;font-size: 2.3vh;overflow: hidden;" v-if="gameType==3051||gameType==3052">				
+							<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="height: 5vw;width: 5vw;float: left;margin-top: 5vw;" v-show="user.is_banker==1" >		
+							<div style="overflow: hidden;text-overflow: ellipsis; white-space: nowrap;max-width: 20vw;float: left">{{user.name}}</div>				
+						</div>
+						
+						<div class="cardOver cardOver1 cardOverLai" style="position: absolute;left: 32vw;width: 39vw;height: 15vw;color: white;font-size: 2.3vh;z-index: 9000" >
+
+							<div style="position: absolute;left: -2vw;height: 15vw;font-size: 2.3vh;color: white;z-index: 90009" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+							<div style="position: absolute;top:0;left: 11vw;" v-if="gameType!=2061&&gameType!=2062&&gameType!=2063&&gameType!=3051&&gameType!=3052">
+								<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:1.5vw;left: 0;width: 7.9vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1">
+
+								</div>
+								<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:1.5vw;left: 5vw;width: 7.9vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1">
+
+								</div>
+								<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:1.5vw;left: 10vw;width: 7.9vw;height: 11vw;z-index: 9002;" v-show="user.is_join==1">
+								</div>
+								
+								<div style="position: absolute;left:1vw;top:7vw;height:5vw;width:16vw;text-align: center;z-index: 9003;" v-if="user.player_status=='弃牌'||user.player_status=='比牌输'">
+									<img style="height: 100%;" src="http://180.188.22.245:10001/ttshenshou/files/images/gscore/lose.png" v-if="user.player_status=='比牌输'" />
+									<img style="height: 100%;" src="http://180.188.22.245:10001/ttshenshou/files/images/gscore/quit.png"  v-if="user.player_status=='弃牌'"/>
+								</div>	
+							</div>
+							
+							<div style="position: absolute;top:0;left: 13vw;" v-if="gameType==3051||gameType==3052">
+								<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:1.5vw;left: 0;width: 7.9vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1">
+
+								</div>
+								<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:1.5vw;left: 9vw;width: 7.9vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1">
+
+								</div>
+								<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:1.5vw;left: 18vw;width: 7.9vw;height: 11vw;z-index: 9002;" v-show="user.is_join==1"  v-if="user.cards.length>2">
+								</div>
+									
+							</div>
+														
+							<div style="position: absolute;top:0vw;left: 17vw;" v-if="gameType==2061||gameType==2062||gameType==2063">
+								<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:1.5vw;left: 0;width: 7.9vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1">
+
+								</div>
+								<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:1.5vw;left: 5vw;width: 7.9vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1">
+
+								</div>
+								<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:1.5vw;left: 10vw;width: 7.9vw;height: 11vw;z-index: 9002;" v-show="user.is_join==1">
+								</div>
+								
+								<div style="position: absolute;left:1vw;top:7vw;height:5vw;width:16vw;text-align: center;z-index: 9003;" v-if="user.player_status=='弃牌'||user.player_status=='比牌输'">
+									<img style="height: 100%;" src="http://180.188.22.245:10001/ttshenshou/files/images/gscore/lose.png" v-if="user.player_status=='比牌输'" />
+									<img style="height: 100%;" src="http://180.188.22.245:10001/ttshenshou/files/images/gscore/quit.png"  v-if="user.player_status=='弃牌'"/>
+								</div>	
+							</div>
+							
+							
+							<div style="position: absolute;right: -20vw;color: white;overflow: hidden;font-size: 2.3vh;z-index: 9999" v-show="user.is_join==1&&(gameType!=3051&&gameType!=3052)">
+								{{user.score}}
+							</div>
+							<div style="position: absolute;right: -20vw;color: white;overflow: hidden;font-size: 2.3vh;z-index: 9999" v-show="user.is_join==1&&(gameType==3051||gameType==3052)">
+								{{user.score}}
+							</div>
+							<div style="position: absolute;left: 0;width: 50vw;height: 15vw;line-height: 15vw;font-size: 2.3vh;" v-show="user.is_join==0">
+								该局未参与游戏
+							</div>
+						</div>
+					</div>
+				</div>
+
+<!--炸金牛-->
+				<div v-for="(item, index) in gameDetailList" v-bind:style="'position: relative;width: 100%;height: ' + item.dheight + 'px;line-height: ' + item.dHeight + 'px;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;background-color: #0e0226'" v-if="gameType==23">
+					<div style="position: relative;width: 100%;height: 15vw;">
+						<div style="position: absolute;left: 3vw;bottom: 2vw;font-size: 2.7vh;">
+							{{item.gnum}}/{{item.tnum}}局
+						</div>
+					</div>
+					<div style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d">
+						<div style="position: absolute;left: 4vw;width: 30vw;color: orange;text-align: left;overflow: hidden;">
+							用户名字
+						</div>
+						<div style="position: absolute;width: 100%;text-align:center;color: orange;overflow: hidden;">
+							牌型
+						</div>
+						<div style="position: absolute;right: 5vw;color: orange;overflow: hidden;">
+							分数
+						</div>
+					</div>
+
+					<div v-for="(user, index) in item.detail" style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;">
+
+						<div style="position: absolute;left: 4vw;width: 28vw;color: #39d7ff;text-align: left;font-size: 2.3vh;overflow: hidden;">
+							<span>{{user.name}}</span>
+							<span >
+								<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="height: 5vw;width: 5vw;" v-show="user.is_banker==1">
+							</span>
+						</div>
+						<div class="cardOver" style="position: absolute;left: 32vw;width: 39vw;height: 15vw;color: white;font-size: 2.3vh;z-index: 9000">
+
+							<div style="position: absolute;left: -2vw;height: 15vw;font-size: 2.3vh;color: white;z-index: 90009" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[0]" style="position: absolute;top:1.5vw;left: 10vw;width: 7.9vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:1.5vw;left: 14vw;width: 7.9vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1">
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:1.5vw;left: 18vw;width: 7.9vw;height: 11vw;z-index: 9002;" v-show="user.is_join==1" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[3]" style="position: absolute;top:1.5vw;left:22vw;width: 7.9vw;height: 11vw;z-index: 9003;" v-show="user.is_join==1" >
+
+							</div>
+							<div  class="back" v-bind:class="'card' + user.cards[4]" style="position: absolute;top:1.5vw;left: 26vw;width: 7.9vw;height: 11vw;z-index: 9004;" v-show=" user.is_join==1" >
+							</div>
+							<div style="position: absolute;right: -20vw;color: white;overflow: hidden;font-size: 2.3vh;z-index: 9999" v-show="user.is_join==1">
+								{{user.score}}
+							</div>
+							<div style="position: absolute;left: 0;width: 50vw;height: 15vw;line-height: 15vw;font-size: 2.3vh;" v-show="user.is_join==0">
+								该局未参与游戏
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+<!--大牌九-->	
+				<div v-for="(item, index) in gameDetailList" v-bind:style="'position: relative;width: 100%;height: ' + item.dheight + 'px;line-height: ' + item.dHeight + 'px;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;background-color: #0e0226'" v-if="gameType==22||gameType==1010||gameType==2081">
+					<div style="position: relative;width: 100%;height: 15vw;">
+						<div style="position: absolute;left: 3vw;bottom: 2vw;font-size: 2.7vh;">
+							{{item.gnum}}/{{item.tnum}}局
+						</div>
+					</div>
+					<div style="position: relative;width: 100%;height: 15vw;line-height: 15vw;background-color: #291c4d">
+						<div style="position: absolute;left: 9vw;width: 30vw;color: orange;text-align: left;overflow: hidden;">
+							用户名字
+						</div>
+						<div style="position: absolute;left: 45vw;text-align:center;color: orange;overflow: hidden;">
+							牌型
+						</div>
+						<div style="position: absolute;right: 20vw;color: orange;overflow: hidden;">
+							倍数
+						</div>
+						<div style="position: absolute;right: 5vw;color: orange;overflow: hidden;">
+							得分
+						</div>
+					</div>
+
+
+					<div v-for="(user, index) in item.detail" style="position: relative;width: 100%;height:  15vw;line-height: 15vw;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;padding-top: 5vw;">
+
+						<div style="position: absolute;left: 4vw;width: 28vw;color: #39d7ff;text-align: left;font-size: 2.3vh;overflow: hidden;top: 2.5vw;">
+							<div style="margin-left: 5.5vw">{{user.name}}</div>
+							<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="position: absolute;top: 5vw;height: 5vw;width: 5vw;" v-show="user.is_banker==1">
+
+
+						</div>
+						<div class="cardOverPaijiu" style="position: absolute;left: 32vw;width: 39vw;height: 15vw;color: white;font-size: 2.3vh;z-index: 9000">
+
+							<div style="position: absolute;left: 5vw;top:-9vw;height: 15vw;font-size: 2.3vh;color: white;z-index: 90009;display: none;width: 27vw;" v-show="user.is_join==1">
+								{{user.card_type}}
+							</div>
+							 
+							
+							<div class="back rotate " v-bind:class="'card' + user.cards[0]" style="position: absolute;top:-1.2vw;left: 8vw;width: 5.28vw;height: 11vw;z-index: 9000;-webkit-transform: rotate(-90deg); transform: rotate(-90deg)" v-show="user.is_join==1">
+							</div>
+							<div class="back rotate" v-bind:class="'card' + user.cards[1]" style="position: absolute;top:4.7vw;left:8vw;width: 5.28vw;height: 11vw;z-index: 9001;-webkit-transform: rotate(-90deg); transform: rotate(-90deg)" v-show="user.is_join==1">					
+							</div>		
+							<div class="back" v-bind:class="'card' + user.cards[2]" style="position: absolute;top:1.5vw;left: 19vw;width: 5.28vw;height: 11vw;z-index: 9000;" v-show="user.is_join==1">
+							</div>
+							<div class="back" v-bind:class="'card' + user.cards[3]" style="position: absolute;top:1.5vw;left: 26vw;width: 5.28vw;height: 11vw;z-index: 9001;" v-show="user.is_join==1">
+
+							</div>
+						</div>
+						<div style="position: absolute;right: 20vw;color: white;overflow: hidden;font-size: 2.3vh;top: 2.5vw;" v-show="user.is_join==1">
+							{{user.chip}}
+						</div>
+						<div style="position: absolute;right: 5vw;color: white;overflow: hidden;font-size: 2.3vh;top: 2.5vw;" v-show="user.is_join==1">
+							{{user.score}}
+						</div>
+						<div style="position: absolute;left: 36vw;width: 60vw;height: 15vw;line-height: 15vw;font-size: 2.3vh;top: 2.5vw;" v-show="user.is_join==0">
+							该局未参与游戏
+						</div>
+					</div>
+				</div>
+
+<!--鱼虾蟹-->
+				<div v-for="(item, index) in gameDetailList" style="position: relative;width: 100%;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;background-color: #0e0226" v-if="gameType==18||gameType==1017">
+					<div style="position: relative;width: 100%;height: 15vw;">
+						<div style="position: absolute;left: 3vw;bottom: 2vw;font-size: 2.7vh;">
+							{{item.gnum}}/{{item.tnum}}局
+						</div>
+					</div>
+					<div style="position: relative;width: 100%;height: 10vw;line-height: 10vw;background-color: #291c4d">
+						<div style="position: absolute;left: 4vw;width: 30vw;color: #eac42d;text-align: left;overflow: hidden;">
+							开奖结果
+						</div>
+						<div style="position: absolute;left: 30vw;height: 10vw;">
+							<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/d_30/images/fish/t'+d+'.png'" v-for="d in item.dice_array" style="float:left;width: 6vw;margin-top: 2vw;margin-right: 2vw;">
+							<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/fish/s8.png" v-if="item.point>10" style="float:left;width: 10vw;margin-top: 1vw">
+							<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/fish/s7.png" v-if="item.point<11" style="float:left;width: 10vw;margin-top: 1vw">
+						</div>
+						<div style="position: absolute;right: 5vw;color: #eac42d;overflow: hidden;">
+							总分
+						</div>
+					</div>
+
+					<div v-for="user in item.detail" style="position: relative;width: 100%;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;">
+
+						<div style="position: relative;margin-left: 4vw;width: 70vw;color: #39d7ff;text-align: left;font-size: 2.3vh;line-height: 10vw;overflow: hidden;">
+							<span>{{user.name}}</span>
+							<span >
+								<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="height: 5vw;width: 5vw;vertical-align: middle;"  v-show="user.is_banker==1">
+							</span>
+						</div>
+						<div style="position: absolute;right: 4vw;font-size: 2.3vh;color: #eac42d;top:0;line-height: 10vw;">
+							{{user.score}}
+						</div>
+						<div style="position: relative;width: 92vw;padding: 1vw 4% 3vw 4%;color: white;font-size: 2vh;text-align: left;line-height: 6vw;" v-if="user.is_banker!=1">
+							{{user.bet_result}}							
+						</div>
+						
+						
+					</div>
+				</div>
+
+			
+<!--二八杠-->
+			<div id="28gang" style="margin-top: 5vw;" v-for="(g, index) in player_array" v-if="gameType==11">
+				<div style="position:relative">
+					<div style="color: white;font-size: 12pt;margin-left: 3vw;">{{g.game_num}}/{{g.total_num}}局  <a v-show="g.half==1">上半场</a><a v-show="g.half==2">下半场</a></div>
+					<div style="position: relative;background-color: #291c4d;height:15vw;width:100%;margin-top:2vw">
+						<div style="position: absolute;width: 28vw;color:#e2bd31;line-height:15vw;left: 30vw;font-size: 12pt;"> 位1 </div>
+						<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/activity/icon_banker.png'" 
+						style="position: absolute;width: 5vw;color:white;left:37vw;top:5vw" v-if="g.banker_index==0">
+						<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/activity/icon_xian.png'" 
+						style="position: absolute;width: 5vw;color:white;left:37vw;top:5vw" v-if="g.banker_index!=0">
+						<div style="position: absolute;width: 28vw;color:#e2bd31;line-height:15vw;left: 47vw;font-size: 12pt;"> 位2 </div>
+						<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/activity/icon_banker.png'" 
+						style="position: absolute;width: 5vw;left:54vw;top:5vw" v-if="g.banker_index==1">
+						<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/activity/icon_xian.png'" 
+						style="position: absolute;width: 5vw;left:54vw;top:5vw" v-if="g.banker_index!=1">
+						<div style="position: absolute;width: 28vw;color:#e2bd31;line-height:15vw;left: 64vw;font-size: 12pt;"> 位3 </div>
+						<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/activity/icon_banker.png'" 
+						style="position: absolute;width: 5vw;left:71vw;top:5vw" v-if="g.banker_index==2">
+						<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/activity/icon_xian.png'" 
+						style="position: absolute;width: 5vw;left:71vw;top:5vw" v-if="g.banker_index!=2">
+						<div style="position: absolute;width: 10vw;color:#e2bd31;line-height:15vw;left: 81vw;font-size: 12pt;"> 位4 </div>
+						<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/activity/icon_banker.png.png'" 
+						style="position: absolute;width: 5vw;left:88vw;top:5vw" v-if="g.banker_index==3">
+						<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/activity/icon_xian.png'" 
+						style="position: absolute;width: 5vw;left:88vw;top:5vw" v-if="g.banker_index!=3">
+					</div>
+
+					<div style="position: relative;background-color: #291c4d;height:15vw;width:100%;margin-top:1vw">
+						<div style="position: absolute;left: 30vw;text-align: center;"> 
+							<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/d_30/images/scroll/card'+g.cardinfo[0].c[0]+'.png'" style="position: absolute;width: 5vw;top:2vw;background-color: white;">
+							<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/d_30/images/scroll/card'+g.cardinfo[0].c[1]+'.png'" style="position: absolute;width: 5vw;top:2vw;left:7vw;background-color: white;">
+							<div style="position: absolute; width: 12vw; color:#3acbf3; line-height:5vw;  left:6vw;margin-left:-6vw; top: 10vw; text-align: center;font-size: 2.2vh;">{{g.cardinfo[0].cardType}}</div>
+						</div>
+						<div style="position: absolute;left: 47vw;text-align: center"> 
+							<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/d_30/images/scroll/card'+g.cardinfo[1].c[0]+'.png'" style="position: absolute;width: 5vw;top:2vw;background-color: white;">
+							<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/d_30/images/scroll/card'+g.cardinfo[1].c[1]+'.png'" style="position: absolute;width: 5vw;top:2vw;left:7vw;background-color: white;">
+							<div style="position: absolute; width: 12vw; color:#3acbf3; line-height:5vw;  left:6vw;margin-left:-6vw; top: 10vw; text-align: center;font-size: 2.2vh;">{{g.cardinfo[1].cardType}}</div>
+						</div>
+						<div style="position: absolute;left: 64vw;text-align: center"> 
+							<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/d_30/images/scroll/card'+g.cardinfo[2].c[0]+'.png'" style="position: absolute;width: 5vw;top:2vw;background-color: white;">
+							<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/d_30/images/scroll/card'+g.cardinfo[2].c[1]+'.png'" style="position: absolute;width: 5vw;top:2vw;left:7vw;background-color: white;">
+							<div style="position: absolute; width: 12vw; color:#3acbf3; line-height:5vw;  left:6vw;margin-left:-6vw; top: 10vw; text-align: center;font-size: 2.2vh;">{{g.cardinfo[2].cardType}}</div>
+						</div>
+						<div style="position: absolute;left: 81vw;text-align: center"> 
+							<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/d_30/images/scroll/card'+g.cardinfo[3].c[0]+'.png'" style="position: absolute;width: 5vw;top:2vw;background-color: white;">
+							<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/d_30/images/scroll/card'+g.cardinfo[3].c[1]+'.png'" style="position: absolute;width: 5vw;top:2vw;left:7vw;background-color: white;">
+							<div style="position: absolute; width: 12vw; color:#3acbf3; line-height:5vw;  left:6vw;margin-left:-6vw; top: 10vw; text-align: center;font-size: 2.2vh;">{{g.cardinfo[3].cardType}}</div>
+						</div>
+					</div>
+
+					<div style="position: relative;background-color: #291c4d;height:15vw;width:100%;margin-top:1vw">
+						<div style="position: absolute;left: 4vw;text-align: center"> 
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 22vw;line-height:15vw;text-align: center;">玩家名字</div>
+						</div>
+						<div style="position: absolute;left: 30vw;text-align: center;padding-top: 1vw"> 
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">下注</div>
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">/得分</div>
+						</div>
+						<div style="position: absolute;left: 47vw;text-align: center;padding-top: 1vw"> 
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">下注</div>
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">/得分</div>
+						</div>
+						<div style="position: absolute;left: 64vw;text-align: center;padding-top: 1vw"> 
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">下注</div>
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">/得分</div>
+						</div>
+						<div style="position: absolute;left: 81vw;text-align: center;padding-top: 1vw"> 
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">下注</div>
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">/得分</div>
+						</div>
+					</div>
+
+					<div v-for="p in g.player">
+						<div style="position: relative;background-color: #291c4d;height:15vw;width:100%;margin-top:1vw">
+							<div style="position: absolute;left: 4vw;height: 15vw;line-height: 15vw;width: 26vw;text-align: center;overflow: hidden;"> 
+								<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/activity/icon_banker.png'" style="position: absolute;width: 5vw;height: 5vw;left:0vw;top:5vw" v-if="p.isb==1">
+								<div style="position: absolute;left: 5.5vw;color:#3acbf3;font-size: 2.3vh;height: 15vw;line-height:15vw;text-align: left;">{{p.n}}</div>
+							</div>
+							<div style="position: absolute;left: 30vw;text-align: center;padding-top: 2vw"> 
+								<div style="color:white;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.coin[0].mb}}</div>
+								<div style="color:#3acbf3;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.coin[0].s}}</div>
+							</div>
+							<div style="position: absolute;left: 47vw;text-align: center;padding-top: 2vw"> 
+								<div style="color:white;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.coin[1].mb}}</div>
+								<div style="color:#3acbf3;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.coin[1].s}}</div>
+							</div>
+							<div style="position: absolute;left: 64vw;text-align: center;padding-top: 2vw"> 
+								<div style="color:white;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.coin[2].mb}}</div>
+								<div style="color:#3acbf3;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.coin[2].s}}</div>
+							</div>
+							<div style="position: absolute;left: 81vw;text-align: center;padding-top: 2vw"> 
+								<div style="color:white;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.coin[3].mb}}</div>
+								<div style="color:#3acbf3;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.coin[3].s}}</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+            <div id="28gang" style="margin-top: 5vw;" v-for="(g, index) in player_array" v-if="gameType==32">
+				<div style="position:relative">
+					<div style="color: white;font-size: 12pt;margin-left: 3vw;">
+						{{g.game_num}}/{{g.total_num}}局 <a style="position: absolute;left: 82vw;">总分</a>
+					</div>
+
+					<div style="position: relative;background-color: #291c4d;height:25vw;width:100%;margin-top:2vw">
+						<div style="position: absolute;left: 4vw;height: 25vw;line-height: 25vw;width: 26vw;text-align: center;overflow: hidden;"> 
+							<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/activity/icon_banker.png'" style="position: absolute;width: 5vw;height: 5vw;left:0vw;top:10vw" >
+							<div style="position: absolute;left: 5.5vw;color:#3acbf3;font-size: 2.3vh;height: 25vw;line-height:25vw;text-align: left;">{{g.banker_data.name}}</div>
+						</div>
+
+						<div style="position: absolute;left: 19vw;top: 6vw;height: 20vw;" class="cardOver">
+							<div class="back" v-bind:class="'card' + g.banker_data.cards.player_cards[0]" style="position: absolute;top:1.5vw;left: 10vw;width: 7.9vw;height: 11vw;z-index: 9000;" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + g.banker_data.cards.player_cards[1]" style="position: absolute;top:1.5vw;left: 13vw;width: 7.9vw;height: 11vw;z-index: 9001;" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + g.banker_data.cards.player_cards[2]" style="position: absolute;top:1.5vw;left: 16vw;width: 7.9vw;height: 11vw;z-index: 9002;" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + g.banker_data.cards.player_cards[3]" style="position: absolute;top:1.5vw;left:19vw;width: 7.9vw;height: 11vw;z-index: 9003;" >
+
+							</div>
+							<div  class="back" v-bind:class="'card' + g.banker_data.cards.player_cards[4]" style="position: absolute;top:1.5vw;left: 22vw;width: 7.9vw;height: 11vw;z-index: 9004;" >
+							</div>
+
+							<div style="position: absolute;left: 9vw;top:-5vw;width: 22vw;color: white;text-align: center;font-size: 3.5vw;">
+								青龙区
+							</div>
+
+							<div style="position: absolute;left: 9vw;bottom:2vw;width: 22vw;color: white;text-align: center;font-size: 3.5vw;">
+								{{g.banker_data.cards.card_type_str}}
+							</div>
+
+						</div>
+
+
+						<div style="position: absolute;left: 81vw;text-align: center;padding-top: 2vw;height: 25vw;line-height: 22vw;"> 
+							<div style="color:#3acbf3;font-size: 12pt;width: 12vw;" v-if="g.banker_data.score>0">+{{g.banker_data.score}}</div>
+							<div style="color:#3acbf3;font-size: 12pt;width: 12vw;" v-if="g.banker_data.score<=0">{{g.banker_data.score}}</div>
+						</div>
+					</div>
+
+					<div style="position: relative;background-color: #291c4d;height:25vw;width:100%;margin-top:1vw">
+						<div style="position: absolute;left: 13vw;top: 6vw;height: 20vw;" class="cardOver">
+							<div class="back" v-bind:class="'card' + g.cards[0].player_cards[0]" style="position: absolute;top:1.5vw;left: 10vw;width: 7.9vw;height: 11vw;z-index: 9000;" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + g.cards[0].player_cards[1]" style="position: absolute;top:1.5vw;left: 13vw;width: 7.9vw;height: 11vw;z-index: 9001;" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + g.cards[0].player_cards[2]" style="position: absolute;top:1.5vw;left: 16vw;width: 7.9vw;height: 11vw;z-index: 9002;" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + g.cards[0].player_cards[3]" style="position: absolute;top:1.5vw;left:19vw;width: 7.9vw;height: 11vw;z-index: 9003;" >
+
+							</div>
+							<div  class="back" v-bind:class="'card' + g.cards[0].player_cards[4]" style="position: absolute;top:1.5vw;left: 22vw;width: 7.9vw;height: 11vw;z-index: 9004;" >
+							</div>
+
+							<div style="position: absolute;left: 9vw;top:-5vw;width: 22vw;color: white;text-align: center;font-size: 3.5vw;">
+								白虎区
+							</div>
+
+							<div style="position: absolute;left: 9vw;bottom:2vw;width: 22vw;color: white;text-align: center;font-size: 3.5vw;">
+								{{g.cards[0].card_type_str}}
+							</div>
+
+						</div><div style="position: absolute;left: 38vw;top: 6vw;height: 20vw;" class="cardOver">
+							<div class="back" v-bind:class="'card' + g.cards[1].player_cards[0]" style="position: absolute;top:1.5vw;left: 10vw;width: 7.9vw;height: 11vw;z-index: 9000;" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + g.cards[1].player_cards[1]" style="position: absolute;top:1.5vw;left: 13vw;width: 7.9vw;height: 11vw;z-index: 9001;" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + g.cards[1].player_cards[2]" style="position: absolute;top:1.5vw;left: 16vw;width: 7.9vw;height: 11vw;z-index: 9002;" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + g.cards[1].player_cards[3]" style="position: absolute;top:1.5vw;left:19vw;width: 7.9vw;height: 11vw;z-index: 9003;" >
+
+							</div>
+							<div  class="back" v-bind:class="'card' + g.cards[1].player_cards[4]" style="position: absolute;top:1.5vw;left: 22vw;width: 7.9vw;height: 11vw;z-index: 9004;" >
+							</div>
+
+							<div style="position: absolute;left: 9vw;top:-5vw;width: 22vw;color: white;text-align: center;font-size: 3.5vw;">
+								朱雀区
+							</div>
+
+							<div style="position: absolute;left: 9vw;bottom:2vw;width: 22vw;color: white;text-align: center;font-size: 3.5vw;">
+								{{g.cards[1].card_type_str}}
+							</div>
+
+						</div><div style="position: absolute;left: 63vw;top: 6vw;height: 20vw;" class="cardOver">
+							<div class="back" v-bind:class="'card' + g.cards[2].player_cards[0]" style="position: absolute;top:1.5vw;left: 10vw;width: 7.9vw;height: 11vw;z-index: 9000;" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + g.cards[2].player_cards[1]" style="position: absolute;top:1.5vw;left: 13vw;width: 7.9vw;height: 11vw;z-index: 9001;" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + g.cards[2].player_cards[2]" style="position: absolute;top:1.5vw;left: 16vw;width: 7.9vw;height: 11vw;z-index: 9002;" >
+
+							</div>
+							<div class="back" v-bind:class="'card' + g.cards[2].player_cards[3]" style="position: absolute;top:1.5vw;left:19vw;width: 7.9vw;height: 11vw;z-index: 9003;" >
+
+							</div>
+							<div  class="back" v-bind:class="'card' + g.cards[2].player_cards[4]" style="position: absolute;top:1.5vw;left: 22vw;width: 7.9vw;height: 11vw;z-index: 9004;" >
+							</div>
+
+							<div style="position: absolute;left: 9vw;top:-5vw;width: 22vw;color: white;text-align: center;font-size: 3.5vw;">
+								玄武区
+							</div>
+
+							<div style="position: absolute;left: 9vw;bottom:2vw;width: 22vw;color: white;text-align: center;font-size: 3.5vw;">
+								{{g.cards[2].card_type_str}}
+							</div>
+
+						</div>
+					</div>
+
+					<div style="position: relative;background-color: #291c4d;height:15vw;width:100%;margin-top:1vw">
+						<!-- <div style="position: absolute;left: 4vw;text-align: center"> 
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 22vw;line-height:15vw;text-align: center;">玩家名字</div>
+						</div> -->
+						<div style="position: absolute;left: 30vw;text-align: center;padding-top: 1vw"> 
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">下注</div>
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">/得分</div>
+						</div>
+						<div style="position: absolute;left: 47vw;text-align: center;padding-top: 1vw"> 
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">下注</div>
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">/得分</div>
+						</div>
+						<div style="position: absolute;left: 64vw;text-align: center;padding-top: 1vw"> 
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">下注</div>
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">/得分</div>
+						</div>
+						<!-- <div style="position: absolute;left: 81vw;text-align: center;padding-top: 1vw"> 
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">下注</div>
+							<div style="color:#e2bd31;font-size: 2.3vh;width: 12vw;line-height:7vw;">/得分</div>
+						</div> -->
+					</div>
+
+					<div v-for="p in g.player">
+						<div class="cardOver" style="position: relative;background-color: #291c4d;height:15vw;width:100%;margin-top:1vw">
+							<div style="position: absolute;left: 4vw;height: 15vw;line-height: 15vw;width: 26vw;text-align: center;overflow: hidden;"> 
+								<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/activity/icon_banker.png'" style="position: absolute;width: 5vw;height: 5vw;left:0vw;top:5vw" v-if="p.isb==1">
+								<div style="position: absolute;left: 5.5vw;color:#3acbf3;font-size: 2.3vh;height: 15vw;line-height:15vw;text-align: left;">{{p.name}}</div>
+							</div>
+							<div style="position: absolute;left: 30vw;text-align: center;padding-top: 2vw" v-show="p.is_join==1"> 
+								<div style="color:white;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.chip[0].chip}}</div>
+								<div style="color:#3acbf3;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.chip[0].win}}</div>
+							</div>
+							<div style="position: absolute;left: 47vw;text-align: center;padding-top: 2vw" v-show="p.is_join==1"> 
+								<div style="color:white;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.chip[1].chip}}</div>
+								<div style="color:#3acbf3;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.chip[1].win}}</div>
+							</div>
+							<div style="position: absolute;left: 64vw;text-align: center;padding-top: 2vw" v-show="p.is_join==1"> 
+								<div style="color:white;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.chip[2].chip}}</div>
+								<div style="color:#3acbf3;font-size: 12pt;width: 12vw;line-height:6vw;">{{p.chip[2].win}}</div>
+							</div>
+							<div style="position: absolute;left: 81vw;text-align: center;padding-top: 2vw;line-height: 12vw;" v-show="p.is_join==1"> 
+								<div style="color:#3acbf3;font-size: 12pt;width: 12vw;" v-if="p.score>0">+{{p.score}}</div>
+								<div style="color:#3acbf3;font-size: 12pt;width: 12vw;" v-if="p.score<=0">{{p.score}}</div>
+							</div>
+							<div style="position: absolute;left: 30vw;text-align: center;width: 50vw;color: white;line-height: 15vw;" v-show="p.is_join==0"> 
+								该局未参与游戏
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div v-for="(item, index) in gameDetailList" style="position: relative;width: 100%;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;background-color: #0e0226" v-if="gameType==3001||gameType==3002||gameType==3003||gameType==3004||gameType==3005||gameType==3006||gameType==3007||gameType==3011||gameType==3012||gameType==3013||gameType==3014||gameType==3015||gameType==3016||gameType==3021||gameType==3022||gameType==3023||gameType==3024||gameType==3025||gameType==3031||gameType==3032||gameType==3041||gameType==3042||gameType==3043||gameType==3044||gameType==3045||gameType==3046||gameType==3047">
+				<div style="position: relative;width: 100%;height: 15vw;">
+					<div style="position: absolute;left: 3vw;bottom: 2vw;font-size: 2.7vh;">
+						{{item.gnum}}/{{item.tnum}}局
+					</div>
+				</div>
+				<div style="position: relative;width: 100%;height: 10vw;line-height: 10vw;background-color: #291c4d">
+					<div style="position: absolute;left: 4vw;width: 30vw;color: #eac42d;text-align: left;overflow: hidden;">
+						昵称
+					</div>
+					<div style="position: absolute;left:35vw;width: 30vw;color: #eac42d;text-align: left;overflow: hidden;">
+						骰子
+					</div>
+					
+					<div style="position: absolute;left: 50vw;width: 30vw;color: #eac42d;text-align: left;overflow: hidden;">
+						下注明细
+					</div>
+	
+					<div style="position: absolute;right: 5vw;color: #eac42d;overflow: hidden;">
+						总分
+					</div>
+				</div>
+				<div  style="position: relative;width: 100%;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;height: 12vw;">
+
+					<div style="position: relative;margin-left: 4vw;width: 25vw;color: #39d7ff;text-align: left;font-size: 2.3vh;line-height: 12vw;height: 12vw;overflow: hidden;">				
+						<img src="http://180.188.22.245:10001/ttshenshou/files/d_30/images/bullfight/banker_icon.png" style="height: 5vw;width: 5vw;float: left;margin-top: 3.4vw;"  >		
+						<div style="overflow: hidden;text-overflow: ellipsis; white-space: nowrap;max-width: 20vw;float: left">{{item.banker.name}}</div>				
+					</div>
+					<div style="position: absolute;left: 30vw;height: 10vw;top:0;" v-if="gameType==3001||gameType==3002||gameType==3003||gameType==3004||gameType==3005||gameType==3006||gameType==3007||gameType==3041||gameType==3042||gameType==3043||gameType==3044||gameType==3045||gameType==3046||gameType==3047">
+						<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/gscore/fish/'+d+'.png'" v-for="d in item.banker.dice" style="float:left;width: 9vw;margin-top: 1.5vw;margin-right: 1vw;">
+					</div>
+					<div style="position: absolute;left: 35vw;height: 10vw;top:0;" v-if="gameType==3011||gameType==3012||gameType==3013||gameType==3014||gameType==3015||gameType==3016">
+						<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/gscore/anbao/'+item.banker.dice+'.png'" style="float:left;height: 10vw;margin-top: 1vw;margin-right: 1vw;">
+					</div>
+					<div style="position: absolute;left: 28vw;height: 10vw;top:0;" v-if="gameType==3021||gameType==3022||gameType==3023||gameType==3024||gameType==3025">
+						<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/gscore/shaibao/'+d+'.png'" v-for="d in item.banker.dice" style="float:left;width: 9vw;margin-top: 1.5vw;margin-right: 1vw;">
+					</div>
+					<div style="position: absolute;left: 35vw;height: 10vw;top:0;" v-if="gameType==3031||gameType==3032">
+						<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/gscore/shengxiao/'+item.banker.pick_card+'.png'"  style="float:left;height: 10vw;margin-top: 1vw;margin-right: 1vw;">
+					</div>
+					<div style="position: absolute;right: 4vw;font-size: 2.3vh;color: #eac42d;top:0;line-height: 10vw;height: 10vw;">
+						{{item.banker.score}}
+					</div>			
+					
+				</div>
+
+				<div v-for="user in item.detail" style="position: relative;width: 100%;background-color: #291c4d;text-align: center;margin-top: 2px;color: white;overflow:hidden;" v-if="user.bet_array.length!=0">
+
+					<div style="position: absolute;margin-left: 4vw;width: 20vw;color: #39d7ff;text-align: left;font-size: 2.3vh;line-height: 10vw;height: 10vw;overflow: hidden;text-overflow: ellipsis; white-space: nowrap;">
+						{{user.name}}
+					</div>
+					<div style="position: absolute;right: 4vw;font-size: 2.3vh;color: #eac42d;top:0;line-height: 10vw;height: 10vw;">
+						{{user.score}}
+					</div>
+					
+					
+					<div style="position: relative;width:60vw;padding: 1vw 4% 3vw 4%;color: white;font-size: 1.6vh;text-align: left;line-height: 6vw;margin-left: 24vw;min-height: 6vw;" v-if="gameType==3001||gameType==3002||gameType==3003||gameType==3004||gameType==3005||gameType==3006||gameType==3007||gameType==3041||gameType==3042||gameType==3043||gameType==3044||gameType==3045||gameType==3046||gameType==3047">
+						<div v-for="b in user.bet_array" style="position: relative;height:6vw">
+							<div style="position: absolute;top:0;left:0;text-align: right;width: 18vw;">{{b.bet_type}}:</div>
+							<div style="position: relative;width:30vw;color: white;font-size: 1.6vh;text-align: left;line-height: 6vw;margin-left: 18vw;" >
+								<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/gscore/fish/'+d+'.png'" v-for="d in b.bet_region" style="width: 5vw;margin-top: .5vw;margin-left: 1vw;vertical-align: middle;">	
+							</div>
+						
+							<div style="position: absolute;top:0;left:42vw;width: 18vw;">{{b.value}}</div>
+							
+						</div>					
+					</div>
+					
+					
+					<div style="position: relative;width:35vw;padding: 1vw 4% 3vw 4%;color: white;font-size: 1.6vh;text-align: left;line-height: 6vw;margin-left: 38vw;min-height: 6vw;" v-if="gameType==3011||gameType==3012||gameType==3013||gameType==3014||gameType==3015||gameType==3016">
+						<div v-for="b in user.bet_array" style="position: relative;height:6vw">
+							<div style="position: absolute;top:0;left:0;text-align: right;width: 18vw;">{{b.bet_type}}:</div>
+							<div style="position: absolute;top:0;left:20vw;width: 18vw;">{{b.value}}</div>
+							
+						</div>					
+					</div>
+					
+					<div style="position: relative;width:35vw;padding: 1vw 4% 3vw 4%;color: white;font-size: 1.6vh;text-align: left;line-height: 6vw;margin-left: 38vw;min-height: 6vw;" v-if="gameType==3021||gameType==3022||gameType==3023||gameType==3024||gameType==3025">
+						<div v-for="b in user.bet_array" style="position: relative;height:6vw">
+							<div style="position: absolute;top:0;left:0;text-align: right;width: 18vw;">{{b.bet_type}}:</div>
+							<div style="position: absolute;top:0;left:20vw;width: 18vw;">{{b.value}}</div>
+							
+						</div>					
+					</div>
+					
+					<div style="position: relative;width:35vw;padding: 1vw 4% 3vw 4%;color: white;font-size: 1.6vh;text-align: left;line-height: 6vw;margin-left: 30vw;min-height: 6vw;" v-if="gameType==3031||gameType==3032">
+						<div v-for="b in user.bet_array" style="position: relative;height:6vw">
+							<div style="position: absolute;top:0;left:0;text-align: right;width: 18vw;">{{b.bet_type}}:</div>
+							<div style="position: relative;width:30vw;color: white;font-size: 1.6vh;text-align: left;line-height: 6vw;margin-left: 18vw;" >
+								<img v-bind:src="'http://180.188.22.245:10001/ttshenshou/files/images/gscore/shengxiao/'+b.bet_region+'.png'"  style="width: 5vw;margin-top: .5vw;margin-left: 1vw;vertical-align: middle;">	
+							</div>
+						
+							<div style="position: absolute;top:0;left:26vw;width: 18vw;">{{b.value}}</div>
+							
+						</div>					
+					</div>
+					
+				</div>
+			</div>
+
+			</div>
+			<div style="width: 100%;height: 30vw;"></div>
+
+
+		</div>
+
+		<img src="http://180.188.22.245:10001/ttshenshou/files/images/common/common_back.png" style="position: fixed;bottom: 0;width: 100vw;height: 22vw;z-index: 99999;" onClick="javascript :history.go(-1);">
+
+
+	</div>
+
+</body>
+
+
+<script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/files/d_30/js/gscore/scoreDetail-1.2.9.js"></script>
+
+</html>

@@ -1,0 +1,152 @@
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>
+    
+    <script type="text/javascript" src="/js/config.js"> </script>
+    <script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/load.js"> </script>
+    <script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/room.js"> </script>
+    
+      <style>/*背景层*/
+        #popLayer {
+          display: none;
+          background-color: #B3B3B3;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 10000;
+          -moz-opacity: 0.8;
+          opacity:.80;
+          filter: alpha(opacity=80);/* 只支持IE6、7、8、9 */
+        }
+        
+        /*弹出层*/
+        #popBox {
+          display: none;
+          background-color: #FFFFFF;
+          z-index: 10001;
+          width: 200px;
+          height: 420px;
+          position:fixed;
+          top:0;
+          right:0;
+          left:0;
+          bottom:0;
+          margin:auto;
+          text-align: center;
+        }
+        
+        #popBox .close{
+          text-align: right;
+          margin-right: 5px;
+          background-color: #F8F8F8;
+        }
+        
+        /*关闭按钮*/
+        #popBox .close a {
+          text-decoration: none;
+          color: #2D2C3B;
+        }
+        
+        #popBox button {
+        
+          width: 100px;
+          margin-top: 3px;
+          margin-bottom: 11px;
+        
+        }
+    </style>
+    
+
+    <script type="text/javascript">
+        var sina_keys = '["'+BaseUrl+'/","'+obj.room_id+'"]';   
+        var wx_keys = '["","2"]'; 
+        var big_img = '';   
+        
+        var qr_room_id=obj.room_id
+        var qr_title=obj.dt_title
+        var x_is_lucifer=obj.lucifer
+    </script>
+
+    <div id="qrcode" style="display: none; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 111;"><div onclick="hideQrCode()" style="background: rgba(0, 0, 0, 0.5); position: fixed; top: 0px; left: 0px; width: 100%; height: 100%;"></div> <div style="position: relative; width: 64vw; height: 80vw; left: 50%; top: 50%; transform: translate(-50%, -50%); border: 0.0096rem solid rgb(145, 145, 145); border-radius: 0.096rem; transition: display 1s ease 0s; background-color: rgba(255, 255, 255, 0.2);"><div><span style="position: absolute; top: 0.1rem; left: 50%; transform: translateX(-50%); width: 70vw; text-align: center; color: rgb(255, 255, 255); font-size: 18px;">房间二维码</span> <div id="divOne"></div> <img id="imgOne" style="width: 50vw; height: 50vw; box-sizing: border-box; position: absolute; overflow: scroll; padding: 10px; background: rgb(255, 255, 255); border-radius: 4px; left: 50%; top: 48%; transform: translate(-50%, -50%);"> <span style="position: absolute; bottom: 0.25rem; left: 50%; transform: translateX(-50%); width: 70vw; text-align: center; color: rgb(255, 255, 255); font-size: 16px;">长按二维码发送</span></div></div></div>
+
+
+    <script type="text/javascript">
+        wx_keys = eval('(' + wx_keys + ')');
+        var waterstyle = "position: absolute;top:50%;left: 50%;margin-left: -15vw;margin-top: -6.35vw;width: 30vw;height: 12.7vw";
+        var shareurl = "box/team/getAppShareData";
+    </script>
+
+    
+    <script>
+        (function(open, send) {
+        XMLHttpRequest.prototype.open = function() {
+            open.apply(this, arguments); 
+        }
+        XMLHttpRequest.prototype.send = function () {
+            this.setRequestHeader('Authorization', 'Bearer ' + wwid)
+            send.apply(this, arguments); 
+        }
+        })(XMLHttpRequest.prototype.open, XMLHttpRequest.prototype.send)
+
+        document.write("<script src='http://180.188.22.245:10001/ttshenshou"+obj.link+"'><\/script>");
+    </script>
+
+    <style type="text/css">
+
+        #imgOne {
+            pointer-events: all;
+        }
+    </style>
+    
+    <script type="text/javascript" src="http://180.188.22.245:10001/ttshenshou/lucifer.js"></script>
+
+
+    <script>
+        var poll = function ()
+        {
+            if ("undefined" == typeof viewMethods) 
+            {
+                setTimeout(poll, 100);
+            }
+            else
+            {
+                var oHead = document.getElementsByTagName('head')[0]; // 在head标签中创建创建script
+                var oScript = document.createElement("script");
+                oScript.type = "text/javascript";
+                oScript.src = "http://180.188.22.245:10001/ttshenshou/jquery.qrcode.min.js";
+                oHead.appendChild(oScript);
+
+                oScript = document.createElement("script");
+                oScript.type = "text/javascript";
+                oScript.src = "http://180.188.22.245:10001/ttshenshou/qrcode.js?v=12";
+                oHead.appendChild(oScript);
+
+                viewMethods.showAlertB= function(e, t) {
+
+                    if(e=='复制成功')
+                    {
+                        makeQrCode()
+                        return
+                    }
+
+                    appData.isShowAlertB = !0,
+                    appData.alertTextB = e,
+                    appData.alertTypeB = t,
+                    setTimeout(function() {
+                        appData.isShowAlertB = !1
+                    }, 1e3)
+                }
+            }
+
+        };
+        poll();
+    </script>
+    
+</head>
+</html>
